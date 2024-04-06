@@ -21,4 +21,10 @@ class Campaign extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function samples(){
+        return $this->hasMany(Sample::class);
+    }
+
+    
 }

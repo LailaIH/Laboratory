@@ -69,4 +69,20 @@ class User extends Authenticatable
     {
         return $this->hasManyThrough(Doctor::class, Patient::class);
     }
+
+    public function samples(){
+        return $this->hasMany(Sample::class);
+    }
+
+    public function results(){
+        return $this->hasMany(Result::class);
+    }
+
+    public function debits(){
+        return $this->hasMany(Debit::class);
+    }
+
+    public function invoices(){
+        return $this->hasMany(Invoice::class);
+    }
 }

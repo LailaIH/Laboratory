@@ -10,7 +10,7 @@ class Patient extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'doctor_id', 'name', 'age', 'gender', 'status', 'is_online',
+        'user_id', 'doctor_id', 'name', 'age', 'gender', 'status', 'is_online', 'points',
     ];
 
     public function user()
@@ -21,5 +21,16 @@ class Patient extends Model
     public function doctor()
     {
         return $this->belongsTo(Doctor::class);
+    }
+
+    public function samples(){
+        return $this->hasMany(Sample::class);
+    }
+    public function debits(){
+        return $this->hasMany(Debit::class);
+    }
+
+    public function invoices(){
+        return $this->hasMany(Invoice::class);
     }
 }
