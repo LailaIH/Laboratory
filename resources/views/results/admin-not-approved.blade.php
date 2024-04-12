@@ -5,32 +5,41 @@
         <!-- Main page content-->
         <div class="container mt-n5">
 
-            <div class="card">
-                <div class="card-body">
+            
 
 
                     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
-                    <div class="container">
-                        <h1>List Of Results For Admin Approval</h1>
+                   
+                    <div class="card">
+                    <div class="card-header">List Of Results For Admin Approval</div>
+                    <div class="card-body">
+
                         @if (session('success'))
                             <div class="alert alert-success">{{ session('success') }}</div>
+                            @endif
+
+                            @if ($errors->has('fail'))
+                                <div class="alert alert-danger">
+                                    {{ $errors->first('fail') }}
+                                </div>
                             @endif
 
                         @if ($notApprovedResults->isEmpty())
                             <p>No Results.</p>
                         @else
-                            <div class=" mt-3 table-container">
+                           
                         
-                                <table  class="table table-striped">
+                                <table  class="table small-table-text">
                                     <thead>
-                                    <tr >
+                                    <tr style="white-space: nowrap; font-size: 14px;" >
 
                                         <th>Result</th>
                                         
                                         <th>Title</th>
                                         <th>Body</th>
-                                        <th>Approve</th>
+                                        <th> </th>
+                                        <th> </th>
                                         
                                         
 
@@ -40,7 +49,7 @@
                                     </thead>
                                     <tbody>
                                     @foreach ($notApprovedResults as $result)
-                                        <tr>
+                                        <tr style="white-space: nowrap; font-size: 14px;">
 
                                             <td>Result for   {{ $result->sample->patient->name }}</td>
                                             
@@ -57,8 +66,20 @@
                                                 <form action="{{ route('results.admin_approve', ['id'=>$result['id']]) }}" method="POST" class="d-inline">
                                                         @csrf
                                                         <button type="submit" class="btn btn-success">Approve</button>
-                                                    </form>
-                                            </td>
+                                                    </form></td>
+                                                    <td>
+                                                    <form action="{{ route('results.admin_reject', ['id'=>$result['id']]) }}" method="POST" class="d-inline">
+                                                        @csrf
+                                                        <div class="row gx-3 mb-3">
+                                                            <div class="col-md-6">
+                                                        <input class="form-control" placeholder="enter rejection reason" name="reason"/>
+                                                        @error('reason')
+                                                            {{$message}}
+                                                        @enderror</div>
+                                                        <div class="col-md-6">
+                                                        <button type="submit" class="btn btn-danger">Reject</button></div></div>
+                                                    </form> </td>
+                                            
 
                      
 

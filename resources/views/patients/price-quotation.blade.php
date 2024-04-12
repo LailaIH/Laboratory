@@ -24,25 +24,27 @@
                             <div class="card-body">
                                 <table  class="table small-table-text">
                                     <thead>
-                                    <tr >
+                                    <tr style="white-space: nowrap; font-size: 14px;" >
 
                                         <th>Patient Name</th>
                                         <th>Patient Age</th>
                                         <th>Sample Institute</th>
-                                        <th>Sample</th>
-                                        <th>Discount</th>
+                                        <th>Test Name</th>
+                                        <th>Original Test Discount</th>
+                                        <th>Sample Discount</th>
                                         <th>Patient's Notes</th>
                                     
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach ($samples as $sample)
-                                        <tr>
+                                        <tr style="white-space: nowrap; font-size: 14px;">
 
                                             <td>{{ $patient->name }}</td>
                                             <td>{{ $patient->age }}</td>
                                             <td>{{ $sample->institu->name }}</td>
-                                            <td>{{ $sample->group->name }}</td>
+                                            <td>{{ $sample->test->name }}</td>
+                                            <td>{{ $sample->test->campaign->name }}</td>
                                             <td>{{ $sample->campaign->name }}</td>
                                             <td>{{ $sample->pation_note }}</td>
 

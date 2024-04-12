@@ -26,5 +26,10 @@ class Campaign extends Model
         return $this->hasMany(Sample::class);
     }
 
+    public function test(){
+        return $this->hasMany(Test::class);
+
+    } 
+
     
 }

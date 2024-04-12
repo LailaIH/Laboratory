@@ -11,8 +11,8 @@ class Sample extends Model
 
     protected $fillable = [
         'user_id', 'pationt_id', 'doctor_id', 'branche_id', 'is_online', 'status',
-        'institu_id', 'group_id','payment_id','period_time','pation_note'	,'analysis_id',
-        'total_price','campaign_id','gross_amount','paid_amount','remain_amount','money_note',
+        'institu_id', 'test_id','payment_id','period_time','pation_note'	,'analysis_id',
+        'campaign_id','gross_amount','paid_amount','remain_amount','money_note',
         'status','is_online','is_approved','is_approved_doctor',
     ];
 
@@ -26,6 +26,10 @@ class Sample extends Model
 
     public function patient(){
         return $this->belongsTo(Patient::class);
+    }
+
+    public function test(){
+        return $this->belongsTo(Test::class);
     }
 
     public function payment(){
@@ -44,9 +48,7 @@ class Sample extends Model
     return $this->belongsTo(Institu::class);
       }
 
-    public function group(){
-        return $this->belongsTo(Group::class);
-    }  
+   
 
     public function result()
     {

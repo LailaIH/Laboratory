@@ -10,7 +10,7 @@ use App\Models\Branch;
 use App\Models\Doctor;
 use App\Models\Payment;
 use App\Models\Campaign;
-use App\Models\Group;
+use App\Models\Test;
 use App\Models\Institu;
 
 
@@ -46,8 +46,8 @@ class SampleController extends Controller
             'doctors'=>Doctor::all(),
             'institutes'=>Institu::all(),
             'payments'=>Payment::all(),
-            'campaigns'=>Campaign::all(),
-            'groups'=>Group::all()
+            'tests'=>Test::all(),
+            
         ]);
     }
 
@@ -59,14 +59,13 @@ class SampleController extends Controller
             'doctor_id'=>'required',
             'institute_id'=>'required',
             'payment_id'=>'required',
-            'group_id'=>'required',
-            'campaign_id'=>'required',
-            'period'=>'date',
-            'today'=>'date',
-            'total_price'=>'required|numeric',
+            'test_id'=>'required',
+            
+            
+            
             'gross_amount'=>'required|numeric',
             'paid_amount'=>'required|numeric',
-            'remain_amount'=>'required|numeric',
+            'test_id'=>'required',
             'money_note'=>'string',
             'notes'=>'string',
             'admission'=>'required|date',
@@ -74,12 +73,13 @@ class SampleController extends Controller
         ]);
 
         $sample = new Sample();
-
+        $campaign = Campaign::where('discount',0.0)->first();
+        $test = Test::findOrFail($data['test_id']);
 
         // count gestational age
-        if($data['period'] && $data['today']){
-        $lastPeriodDate = Carbon::parse($data['period']);
-        $todayDate = Carbon::parse($data['today']);
+        if($request->filled('today') && $request->filled('period')){
+        $lastPeriodDate = Carbon::parse($request->input('period'));
+        $todayDate = Carbon::parse($request->input('today'));
         $gestational_age = $todayDate->diffInDays($lastPeriodDate);
         $sample->period_time = $gestational_age;
 
@@ -104,18 +104,18 @@ class SampleController extends Controller
         $sample->doctor_id	= $data['doctor_id'];
         $sample->institu_id	= $data['institute_id'];
         $sample->payment_id	= $data['payment_id'];
-        $sample->group_id	= $data['group_id'];
-        $sample->campaign_id = $data['campaign_id'];
-        $sample->total_price = $data['total_price'];
+        $sample->test_id = $data['test_id'];
+        
+        $sample->campaign_id = $campaign->id;
         $sample->admission_date = $data['admission'];
         $sample->gross_amount = $data['gross_amount'];
         $sample->paid_amount = $data['paid_amount'];
-        $sample->remain_amount = $data['remain_amount'];
+        $sample->remain_amount = $test->price - $data['paid_amount'];
         $sample->money_note = $data['money_note'];
         $sample->pation_note = $data['notes'];
-        $sample->is_approved = $request->has('is_approved')?1:0;
-        $sample->is_approved_doctor = $request->has('is_approved_doctor')?1:0;
-        $sample->is_online = $request->has('is_online')?1:0;
+        
+        $sample->is_approved_doctor = false;
+        
 
         
 
@@ -170,6 +170,7 @@ class SampleController extends Controller
 
     //for admin to view  discount requests
 
+    //show waiting samples
     public function approve(){
         $waitingSamples = Sample::where('status', 'waiting')->get();
 
@@ -205,5 +206,30 @@ class SampleController extends Controller
     }
 
 
+    public function lateSamplesList(){
+        $samplesWithResults = Sample::has('result')->get();
+        $lateSamples = [];
+
+        foreach($samplesWithResults as $sample){
+            $test_result_time = $sample->test->result_time; // in hours
+
+
+            $sample_created_at = $sample->created_at;
+            $result_created_at = $sample->result->created_at;
+            $differenceInHours = $sample_created_at->diffInHours($result_created_at);
+
+            if($differenceInHours > $test_result_time ){
+
+                $lateSamples[] = $sample;
+            }
+            
+            
+
+        }
+
+        return view('samples.late-samples' , ['lateSamples'=>$lateSamples]);
+
+
 }
 
+}

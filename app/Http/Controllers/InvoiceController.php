@@ -31,12 +31,12 @@ class InvoiceController extends Controller
 
         if(!$samples->isEmpty()){
             foreach($samples as $sample){
-                if($sample->campaign->discount != 0.0){
-                    $totalSamples += ($sample->total_price*(1-$sample->campaign->discount))-$sample->paid_amount;
-                }
-                else{
-                $totalSamples += $sample->remain_amount ;
-                }
+                $maxDiscount = max($sample->campaign->discount , $sample->test->campaign->discount);
+
+               
+                $totalSamples += ($sample->test->price*(1-$maxDiscount))-$sample->paid_amount;
+               
+               
             } }
 
             $totalSamples = abs($totalSamples);

@@ -5,25 +5,34 @@
         <!-- Main page content-->
         <div class="container mt-n5">
 
-            <div class="card">
-                <div class="card-body">
 
 
                     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
-                    <div class="container">
-                        <h1>List Of Samples</h1>
+                    <div class="card">
+                    <div class="card-header">List Of Samples</div>
+                    <div class="card-body">
 
-                        @if ($samples->isEmpty())
-                            <p>No Samples.</p>
-                        @else
-                            <div class=" mt-3 table-container">
-                            @if (session('success'))
+                    @if (session('success'))
                             <div class="alert alert-success">{{ session('success') }}</div>
                             @endif
-                                <table  class="table table-striped">
+
+                        @if ($samples->isEmpty())
+                        <div class="card-body">
+                         <form method="GET" action="{{route('samples.create')}}">
+                             <div class="col-md-6">
+                             <label class="small mb-1 mr-5" for="max_products">No Samples</label>
+                             <button type="submit" class="btn btn-primary btn-xs">Add Sample</button>
+                             </div>
+                         </form>
+                         </div>
+                        @else
+                            
+                           
+                            <div class="card-body">
+                                <table  class="table small-table-text">
                                     <thead>
-                                    <tr >
+                                    <tr style="white-space: nowrap; font-size: 14px;" >
 
                                         <th>Sample</th>
                                         <th>Is Online?</th>
@@ -37,15 +46,15 @@
                                     </thead>
                                     <tbody>
                                     @foreach ($samples as $sample)
-                                        <tr>
+                                        <tr style="white-space: nowrap; font-size: 14px;">
 
                                             <td>Sample for   {{ $sample->patient->name }}</td>
                                             
 
                                             <td>
-                        <span class="badge {{ $sample->is_online ? 'badge-green' : 'badge-red' }}">
-                            {{ $sample->is_online ? 'Online' : 'Offline' }}
-                            </span>
+                                            <span class="badge {{ $sample->is_online ? 'badge-green' : 'badge-red' }}">
+                                          {{ $sample->is_online ? 'Online' : 'Offline' }}
+                                             </span>
                  
                                             </td>
                                             <td>

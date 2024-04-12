@@ -7,6 +7,10 @@ use App\Http\Controllers\ResultController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\DebitController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\Test_ThirdpartyController;
+
+
 
 
 
@@ -66,14 +70,25 @@ Route::middleware('admin')->group(function () {
             Route::post('/results/store/{id}', [ResultController::class, 'store'])->name('results.store');
             Route::get('/results/search/patients/samples', [ResultController::class, 'searchPatientSamples'])->name('results.search_patients_samples');
             Route::post('/results/find/samples', [ResultController::class, 'findSamples'])->name('results.find_samples');
-            Route::patch('/results/update-status/{result}', [SampleController::class, 'updateStatus'])->name('results.updateStatus');
+            Route::patch('/results/update-status/{result}', [ResultController::class, 'updateStatus'])->name('results.updateStatus');
 
             //admin approval
-            Route::get('/results/not-approved/admin', [ResultController::class, 'notApprovedByAdminResults'])->name('results.not_approved_by_admin');
+            Route::get('/results/not-approved/admin', [ResultController::class, 'notApprovedByAdminResults'])->name('results.not_approved_by_admin');   
             Route::post('/results/admin-approve/{id}', [ResultController::class, 'adminApproveResult'])->name('results.admin_approve');
+            Route::post('/results/admin-reject/{id}', [ResultController::class, 'adminRejectResult'])->name('results.admin_reject');
+            Route::get('/results/rejected/admin', [ResultController::class, 'rejectedByAdminResults'])->name('results.rejected_by_admin');   
+            Route::delete('/results/destroy/{id}', [ResultController::class, 'destroy'])->name('results.destroy');   
+
+           
+           
             //doctor approval
             Route::get('/results/not-approved/doctor', [ResultController::class, 'notApprovedByDoctorResults'])->name('results.not_approved_by_doctor');
             Route::post('/results/doctor-approve/{id}', [ResultController::class, 'doctorApproveResult'])->name('results.doctor_approve');
+            Route::post('/results/doctor-reject/{id}', [ResultController::class, 'doctorRejectResult'])->name('results.doctor_reject');
+            Route::get('/results/rejected/doctor', [ResultController::class, 'rejectedByDoctorResults'])->name('results.rejected_by_doctor');   
+
+
+
 
         //Patients
         Route::get('/patients/with-samples', [PatientController::class, 'patientsWithPriceQuotation'])->name('patients.patients_with_samples');
@@ -92,7 +107,14 @@ Route::middleware('admin')->group(function () {
 
 
 
+        //tests
+        Route::get('/tests/create', [TestController::class, 'create'])->name('tests.create');
+        Route::post('/tests/store', [TestController::class, 'store'])->name('tests.store');
 
+        // test_thirdparty routes
+        Route::get( '/test-thirdparties', [Test_ThirdpartyController::class, 'index'])->name('test_thirdparies.index');
+        Route::get('/test-thirdparties/create', [Test_ThirdpartyController::class, 'create'])->name('test_thirdparies.create');
+        Route::post('/test-thirdparties/store', [Test_ThirdpartyController::class, 'store'])->name('test_thirdparies.store');
 
 
 

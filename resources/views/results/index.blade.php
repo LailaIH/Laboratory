@@ -5,14 +5,14 @@
         <!-- Main page content-->
         <div class="container mt-n5">
 
-            <div class="card">
-                <div class="card-body">
+           
 
 
                     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
-                    <div class="container">
-                        <h1>List Of Machine Results</h1>
+                    <div class="card">
+                    <div class="card-header">List Of Results</div>
+                    <div class="card-body">
 
                         @if ($results->isEmpty())
                             <p>No Results.</p>
@@ -21,9 +21,10 @@
                             @if (session('success'))
                             <div class="alert alert-success">{{ session('success') }}</div>
                             @endif
-                                <table  class="table table-striped">
+                            
+                                <table  class="table small-table-text">
                                     <thead>
-                                    <tr >
+                                    <tr style="white-space: nowrap; font-size: 12px;">
 
                                         <th>Result</th>
                                         <th>Is Online</th>
@@ -41,7 +42,7 @@
                                     </thead>
                                     <tbody>
                                     @foreach ($results as $result)
-                                        <tr>
+                                        <tr style="white-space: nowrap; font-size: 12px;">
 
                                             <td>Result for   {{ $result->sample->patient->name }}</td>
                                             

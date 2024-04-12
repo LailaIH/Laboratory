@@ -27,7 +27,8 @@
                           
                                 <table  class="table small-table-text">
                                     <thead>
-                                    <tr >
+                                    <tr style="white-space: nowrap; font-size: 12px;">
+                                    
 
                                         <th>Total Invoice For Samples</th>
                                         <th>Total Debits</th>
@@ -57,13 +58,13 @@
 
                                 @if(!$debits->isEmpty())
                                 <br>
-                                <div ><b>Patient's Debits :</b></div>
+                                <div >Patient's Debits :</div>
                                 <br>
-                                <ul>
+                                <ul> 
                                 @foreach($debits as $debit)
-                                <il>
+                                <li>
                                     <a href="{{route('debits.pay_form' , ['id'=>$debit['id']])}}" >
-                               <p> {{$debit->description}}</p></il>
+                               <p> Pay For Debit {{$debit->debit}} </p></li>
                                    </a>
                                 @endforeach
                                 </ul>

@@ -3,34 +3,48 @@
 
 <div class="container mt-n5">
 
-<div class="card">
-    <div class="card-body">
 
+    @if (session('warning'))
+     <div class="alert alert-success">{{ session('warning') }}</div>
+    @endif
 
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
-        <div class="container">
+        <div class="card">
+        <div class="card-header">Create A New Result</div>
+        <div class="card-body">
 
 
         <form action="{{ route('results.store' , ['id'=>$sample['id']]) }}" method="POST" class="row g-3">
                 @csrf
-                <p>Create A New Result</p>
+                <p>Create A New Result For {{$sample->patient->name}} Of the test {{$sample->test->name}}</p>
                 <div class="col-md-6">
                <label for="title" class="form-label"> Title </label>
                 <input type="text" id="title" name="title" placeholder="result title" class="form-control" value="{{old('title')}}" />
                 </div>
 
 
-                <div class="col-12">
-                    <label for="body" class="form-label">Body</label>
-                    <textarea id="body" name="body" rows="4" cols="5" value="{{old('body')}}"> 
+                <div class="col-md-6">
+                    <label for="body" class="form-label">Result</label>
+                    <select name="body" id="body" class="form-select">
+                    <option value="">Select a Result</option>
+                    @foreach ($results as $result)
+                        <option value="{{ $result }}">{{ $result }}</option>
+                    @endforeach
+                </select>
+                @error('body')
+                    {{$message}}
+                @enderror
+                </div> 
 
-                    </textarea>
-                 </div> 
+
                     <div class="col-12">
                  <label for="status" class="form-label"> Status </label>
                 <input type="text" id="status" name="status" placeholder="result status" class="form-control" value="{{old('status')}}" />
-                </div>
+                @error('status')
+                    {{$message}}
+                @enderror
+            </div>
 
 
     
@@ -50,7 +64,7 @@
 
 
 
-        </div>
+        
     </div>
 </div>
 </div>

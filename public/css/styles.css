@@ -19626,3 +19626,12 @@ pre[class*=language-] {
 .div-3 {
   background-color: #FBD603;
 }
+.badge-green {
+  background-color: #28a745; /* Green background color */
+  color: #fff; /* White text color */
+}
+
+.badge-red {
+  background-color: #dc3545; /* Red background color */
+  color: #fff; /* White text color */
+}

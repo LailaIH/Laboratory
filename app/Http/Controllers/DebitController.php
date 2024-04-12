@@ -31,7 +31,7 @@ class DebitController extends Controller
        $data= $request->validate([
         'search'=>'required|string',
             'debit'=>'required|numeric',
-            'description'=>'string',
+            
         ]);
 
         $debit = new Debit();

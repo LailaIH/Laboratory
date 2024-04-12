@@ -23,14 +23,21 @@
                 <div class="col-md-6">
                 <label for="search" class="small mb-1"> Patient Name </label>
                 <input type="text" id="search" name="search" placeholder="Search" class="form-control" value="{{old('search')}}" />
-                </div>
+                @error('search')
+                    {{$message}}
+                @enderror
+            </div>
 
                 <div class="col-md-6">
                 <label for="debit" class="small mb-1"> Debit Amount </label>
+                
                 <input type="number" id="debit" name="debit"  class="form-control" value="{{old('search')}}" />
-                </div> </div>
+                @error('debit')
+                    {{$message}}
+                @enderror
+            </div> </div>
 
-<br>
+                <br>
                 <div class="col-12">
                     <label for="description" class="small mb-1">Debit Description</label>
                     <textarea class="form-control" id="description" name="description"  value="{{old('body')}}"> 

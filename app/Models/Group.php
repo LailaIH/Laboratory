@@ -25,4 +25,9 @@ class Group extends Model
     public function samples(){
         return $this->hasMany(Sample::class);
     }
+
+    public function test(){
+        return $this->hasMany(Test::class);
+
+    }
 }

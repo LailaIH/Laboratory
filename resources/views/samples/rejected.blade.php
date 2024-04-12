@@ -5,14 +5,14 @@
         <!-- Main page content-->
         <div class="container mt-n5">
 
-            <div class="card">
-                <div class="card-body">
+           
 
 
                     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
-                    <div class="container">
-                        <h1>List Of Rejected Samples</h1>
+                    <div class="card">
+                    <div class="card-header">List Of Rejected Samples</div>
+                    <div class="card-body">
 
                         @if (session('success'))
                             <div class="alert alert-success">{{ session('success') }}</div>
@@ -27,14 +27,14 @@
                         @if ($rejectedSamples->isEmpty())
                             <p>No Rejected Samples.</p>
                         @else
-                            <div class=" mt-3 table-container">
+                           
 
                         
 
 
-                                <table  class="table table-striped">
+                                <table  class="table small-table-text">
                                     <thead>
-                                    <tr >
+                                    <tr style="white-space: nowrap; font-size: 12px;" >
 
                                         <th>Sample ID</th>
                                         <th>Patient Name</th>
@@ -49,7 +49,7 @@
                                     </thead>
                                     <tbody>
                                     @foreach ($rejectedSamples as $sample)
-                                        <tr>
+                                        <tr style="white-space: nowrap; font-size: 12px;">
                                             <td>{{$sample->id}}</td>
                                             <td>{{ $sample->patient->name }}</td>
                                             <td>{{ $sample->discount_reason }}</td>

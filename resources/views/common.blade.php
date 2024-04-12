@@ -264,12 +264,51 @@
                     </a>
                     <div class="collapse" id="collapseDashboards223" data-bs-parent="#accordionSidenav">
                         <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                         
+                       
                             <a class="nav-link" href="{{route('invoices.index')}}">All Invoices</a>
 
 
                         </nav>
                     </div>
+
+
+
+
+                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards224" aria-expanded="false" aria-controls="collapseDashboards224">
+                        <div class="nav-link-icon"><i class="fa-solid fa-bed-pulse"></i></div>
+                        Tests
+                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseDashboards224" data-bs-parent="#accordionSidenav">
+                        <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
+                        <a class="nav-link" href="{{route('tests.create')}}">
+                                New Test
+                                <span class="badge bg-primary-soft text-primary ms-auto"><i class="fa-solid fa-plus"></i></span>
+                            </a>
+                            <a class="nav-link" href="#">All Tests</a>
+
+
+                        </nav>
+                    </div>
+
+
+                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards225" aria-expanded="false" aria-controls="collapseDashboards225">
+                        <div class="nav-link-icon"><i class="fa-solid fa-bed-pulse"></i></div>
+                        Tests With Third Party
+                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseDashboards225" data-bs-parent="#accordionSidenav">
+                        <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
+                        <a class="nav-link" href="{{route('test_thirdparies.create')}}">
+                                New Attach
+                                <span class="badge bg-primary-soft text-primary ms-auto"><i class="fa-solid fa-plus"></i></span>
+                            </a>
+                            <a class="nav-link" href="{{route('test_thirdparies.index')}}">All Tests With Third Party</a>
+
+
+                        </nav>
+                    </div>
+                    
 
 
 
@@ -322,10 +361,13 @@
 
                                     <a class="nav-link" href="{{route('results.not_approved_by_admin')}}">Supervisor Approval</a>
                                     <a class="nav-link" href="{{route('results.not_approved_by_doctor')}}">Doctor Approval</a>
+                                    <a class="nav-link" href="{{route('results.rejected_by_admin')}}">Rejected Results By Admin</a>
+                                    <a class="nav-link" href="{{route('results.rejected_by_doctor')}}">Rejected Results By Doctor</a>
+
                                     <a class="nav-link" href="account-security.html">Transfer Package</a>
                                     <a class="nav-link" href="account-security.html">Sent Results</a>
                                     <a class="nav-link" href="account-security.html">Late Samples</a>
-                                    <a class="nav-link" href="{{route('samples.rejected')}}">Rejected Sample</a>
+                                    <a class="nav-link" href="{{route('samples.rejected')}}">Rejected Extra Discount Sample</a>
 
                                 </nav>
                             </div>
