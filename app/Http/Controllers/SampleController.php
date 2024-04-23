@@ -190,11 +190,21 @@ class SampleController extends Controller
     public function approveDiscountReason(Request $request ,$id)
     {
         $sample = Sample::findOrFail($id);
+        $campaign = Campaign::findOrFail($request->input('campaign_id'));
+        if($sample->test->campaign->discount < $campaign->discount){
         $sample->status = 'approved';
-        $sample->campaign_id = $request->input('campaign_id');
+        $sample->campaign_id = $request->input('campaign_id'); // extra discount approved , and the test original discount is ignored
         $sample->save();
         return redirect()->route('samples.approve')->with('success','Request Has Been Approved');
+        }
+        else{
+            $sample->status = 'waiting';
+            $sample->save();
+            return redirect()->route('samples.approve')->with('warning','The Test of this sample  already have a higer discount percentage , you can just edit the test');
+
+        }
     }
+
 
     //admin reject discount
     public function rejectDiscountReason($id)

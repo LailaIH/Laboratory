@@ -32,11 +32,14 @@
                             <div class="card-body">
                                 <table  class="table small-table-text">
                                     <thead>
-                                    <tr style="white-space: nowrap; font-size: 14px;" >
+                                    <tr style="white-space: nowrap; font-size: 12px;" >
 
                                         <th>Sample</th>
+                                        <th>Test</th>
                                         <th>Is Online?</th>
                                         <th></th>
+                                        <th>Extra Discount For This Sample</th>
+                                        <th>Test's Original Discount</th>
                                         <th>Actions</th>
                                         
 
@@ -46,9 +49,10 @@
                                     </thead>
                                     <tbody>
                                     @foreach ($samples as $sample)
-                                        <tr style="white-space: nowrap; font-size: 14px;">
+                                        <tr style="white-space: nowrap; font-size: 12px;">
 
-                                            <td>Sample for   {{ $sample->patient->name }}</td>
+                                            <td>Sample for   <b>{{ $sample->patient->name }}</b></td>
+                                            <td>{{$sample->test->name}}</td>
                                             
 
                                             <td>
@@ -66,6 +70,8 @@
 
                                                 </form> 
                                             </td>
+                                            <td>{{$sample->campaign->name}}</td>
+                                            <td>{{$sample->test->campaign->name}}</td>
                                             <td>
                                                 <a href="{{ route('samples.edit',  ['id'=>$sample['id']]) }}" class="btn btn-primary btn-xs">Edit</a>
                                                 <a href="{{ route('samples.discount',  ['id'=>$sample['id']]) }}" class="btn btn-primary btn-xs">Request Extra Discount</a>

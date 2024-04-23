@@ -29,10 +29,14 @@
                             @if (session('success'))
                             <div class="alert alert-success">{{ session('success') }}</div>
                             @endif
+
+                            @if (session('warning'))
+                            <div class="alert alert-warning">{{ session('warning') }}</div>
+                            @endif
                             
                                 <table  class="table small-table-text">
                                     <thead>
-                                    <tr style="white-space: nowrap; font-size: 12px;">
+                                    <tr style="white-space: nowrap; font-size: 14px;">
 
                                         <th>Test</th>
                                         <th>Third Party</th>
@@ -44,7 +48,7 @@
                                     </thead>
                                     <tbody>
                                     @foreach ($test_thirdparties as $attachment)
-                                        <tr style="white-space: nowrap; font-size: 12px;">
+                                        <tr style="white-space: nowrap; font-size: 14px;">
 
                                             <td>{{ $attachment->test->name }}</td>
                                             <td>{{ $attachment->thirdparty->name }}</td>

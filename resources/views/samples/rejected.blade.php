@@ -34,7 +34,7 @@
 
                                 <table  class="table small-table-text">
                                     <thead>
-                                    <tr style="white-space: nowrap; font-size: 12px;" >
+                                    <tr style="white-space: nowrap; font-size: 14px;" >
 
                                         <th>Sample ID</th>
                                         <th>Patient Name</th>
@@ -49,7 +49,7 @@
                                     </thead>
                                     <tbody>
                                     @foreach ($rejectedSamples as $sample)
-                                        <tr style="white-space: nowrap; font-size: 12px;">
+                                        <tr style="white-space: nowrap; font-size: 14px;">
                                             <td>{{$sample->id}}</td>
                                             <td>{{ $sample->patient->name }}</td>
                                             <td>{{ $sample->discount_reason }}</td>

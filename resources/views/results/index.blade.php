@@ -68,10 +68,10 @@
                                             <td>
                                                 {{$result->body}}
                                             </td>
-                                            <td>
+                                            <td class=" text-{{$result->is_approved?'green':'red'}}">
                                                 {{$result->is_approved?'YES':'NO'}}
                                             </td>
-                                            <td>
+                                            <td class=" text-{{$result->is_approved_doctor?'green':'red'}}">
                                                 {{$result->is_approved_doctor?'YES':'NO'}}
                                             </td>
                                             <td>

@@ -19635,3 +19635,9 @@ pre[class*=language-] {
   background-color: #dc3545; /* Red background color */
   color: #fff; /* White text color */
 }
+.text-red{
+  color: red;
+}
+.text-green{
+  color: green;
+}

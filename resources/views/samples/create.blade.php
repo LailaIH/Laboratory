@@ -19,7 +19,7 @@
 
                 <div class="col-md-6">
                <label for="search" class="small mb-1"> Patient Name </label>
-                <input type="text" id="search" name="search" placeholder="Search" class="form-control" value="{{old('search')}}" />
+                <input type="text" id="search" name="search" placeholder="Search" class="form-control" value="{{old('search')}}"  required/>
                 @error('search')
                     {{$message}}
                 @enderror
@@ -105,8 +105,10 @@
                 <div class="row gx-3 mb-3">
                 <div class="col-md-4">
                     <label for="admission" class="small mb-1">Admission Date</label>
-                    <input type="date" class="form-control" id="admission" name="admission" value="{{ old('admission') }}">
-
+                    <input type="date" class="form-control" id="admission" name="admission" value="{{ old('admission') }}" required>
+                    @error('test_id')
+                    {{$message}}
+                @enderror
                 </div>   
                 
                 <div class="col-md-4">
@@ -123,7 +125,7 @@
                 <div class="row gx-3 mb-3">
                 <div class="col-md-6">
                     <label for="notes" class="small mb-1">Patient's Notes</label>
-                    <textarea class="form-control" id="notes" name="notes"  value="{{old('notes')}}"> 
+                    <textarea class="form-control" id="notes" name="notes"  value="{{old('notes')}}" required> 
 
                    
                 </textarea>
@@ -158,7 +160,7 @@
 
                 <div class="col-md-6">
                     <label for="money_note" class="small mb-1">Money Notes</label>
-                    <textarea class="form-control" id="money_note" name="money_note"  value="{{old('money_note')}}"> 
+                    <textarea class="form-control" id="money_note" name="money_note"  value="{{old('money_note')}}" required> 
 
                     </textarea>
                  

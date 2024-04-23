@@ -45,7 +45,7 @@ class ResultController extends Controller
     public function findSamples(Request $request){
 
         $request->validate([
-            'search'=>'required|string',
+            'search'=>'required|string', //patient name
         ]);
         
         $patient = Patient::where('name',$request->input('search'))->first();

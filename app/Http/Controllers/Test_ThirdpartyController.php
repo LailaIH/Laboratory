@@ -30,15 +30,23 @@ class Test_ThirdpartyController extends Controller
             'given_time'=>'required',
         ]);
 
+        $test_thirdparty = Test_Thirdparty::where('test_id',$request->input('test_id'))
+        ->where('thirdparty_id',$request->input('thirdparty_id'))->first();
+        if($test_thirdparty){
+            return redirect()->route('test_thirdparies.index')->with('warning','test and third part are already attached ');
+
+        }
+        else{
         $test_thirdparty = new Test_Thirdparty();
+        
         $test_thirdparty->user_id = auth()->user()->id;
         $test_thirdparty->test_id = $request->input('test_id');
         $test_thirdparty->thirdparty_id = $request->input('thirdparty_id');
         $test_thirdparty->given_time = $request->input('given_time');
         $test_thirdparty->save();
 
-        return view('test_thirdparies.index')->with('success','test and third part have been attached successfully');
-
+        return redirect()->route('test_thirdparies.index')->with('success','test and third part have been attached successfully');
+        }
 
     }
 }

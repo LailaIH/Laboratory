@@ -20,7 +20,7 @@
 
                 <div class="col-md-6">
                <label class="small mb-1" for="name" class="form-label">  Name </label>
-                <input type="text" id="name" name="name" placeholder="name" class="form-control" value="{{old('name')}}" />
+                <input type="text" id="name" name="name" placeholder="name" class="form-control" value="{{old('name')}}" required />
                 @error('name')
                    {{$message}}
                     @enderror
