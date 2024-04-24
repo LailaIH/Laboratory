@@ -108,6 +108,12 @@ Route::middleware('admin')->group(function () {
         Route::get('/invoices/create', [InvoiceController::class, 'create'])->name('invoices.create');
         Route::post('/invoices/store', [InvoiceController::class, 'store'])->name('invoices.store');
         Route::get('/invoices/create-from-samples/{sampleId}/{patientId}', [InvoiceController::class, 'createInvoiceFromSamplesList'])->name('invoices.create_sample_invoice');
+        Route::get('/invoices/cancel/request/{id}', [InvoiceController::class, 'invoiceCancelRequest'])->name('invoices.cancel_request');
+        Route::post('/invoices/store/cancel/reason/{id}', [InvoiceController::class, 'storeCancelReason'])->name('invoices.store_cancel_reason');
+        Route::get('/invoices/waiting', [InvoiceController::class, 'waitingInvoices'])->name('invoices.waiting_invoices');
+        Route::get('/invoices/cancel/{id}', [InvoiceController::class, 'cancel'])->name('invoices.cancel');
+        Route::get('/invoices/reject/{id}', [InvoiceController::class, 'reject'])->name('invoices.reject');
+        Route::get('/invoices/rejected/invoices', [InvoiceController::class, 'rejectedInvoices'])->name('invoices.rejected_invoices');
 
 
 

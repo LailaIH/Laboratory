@@ -16,7 +16,7 @@ class DebitController extends Controller
     }
 
     public function index(){
-        return view('debits.index',['debits'=>Debit::all()]);
+        return view('debits.index',['debits'=>Debit::where('debit', '!=', 0)->get()]);
     }
 
 
@@ -74,10 +74,10 @@ class DebitController extends Controller
         if($newDebit <= $oldDebit){
         $debit->debit = $oldDebit - $newDebit ;
         $debit->save();
-        return redirect()->route('invoices.show',$patient->id);
+        return redirect()->route('debits.index')->with('success','successfully updated debit value');
         }
 
-        return redirect()->route('debits.pay_form' , $id)->with('warning','Amount you entered is greater than your original debit');
+        return redirect()->back()->with('warning','Amount you entered is greater than your original debit');
 
 
     }

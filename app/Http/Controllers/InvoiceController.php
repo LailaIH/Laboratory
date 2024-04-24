@@ -108,6 +108,67 @@ class InvoiceController extends Controller
 
         }
 
+        // invoice cancel request
+        public function invoiceCancelRequest($invoiceId){
+
+            $invoice = Invoice::findOrFail($invoiceId);
+            if($invoice->status=='waiting'){
+                return redirect()->back()->with('warning','a canceling request has already been sent for this invoice , and it is in the waiting list');
+            }
+            elseif($invoice->status=='rejected'){
+                return redirect()->back()->with('warning','a canceling request has already been sent for this invoice , and it is in the rejection list');
+
+            }
+            else{
+            return view('invoices.cancel-reason',['invoice'=>$invoice]);
+            }
+        }
+
+        public function storeCancelReason(Request $request ,$invoiceId ){
+            $request->validate([
+                'cancel_reason'=>'required',
+            ]);
+
+            $invoice = Invoice::findOrFail($invoiceId);
+            $patient = $invoice->patient;
+
+            $invoice->cancel_reason = strip_tags($request->input('cancel_reason'));
+            $invoice->status='waiting';
+            $invoice->save();
+            return redirect()->route('invoices.show',$patient->id)->with('success','canceling request has been sent successfully , waiting for manager approval');
+        }
+
+        public function waitingInvoices(){
+            $invoices = Invoice::where('status','waiting')->get();
+
+            return view('invoices.waiting-invoices',['invoices'=>$invoices]);
+        }
+
+        public function cancel($id){
+
+            Invoice::destroy($id);
+            return redirect()->route('invoices.waiting_invoices')->withErrors(['fail' => 'Invoice Has Been Canceled']);
+
+        }
+
+        public function reject($id){
+            $invoice = Invoice::findOrFail($id);
+            $invoice->status = 'rejected';
+            $invoice->save();
+            return redirect()->route('invoices.waiting_invoices')->withErrors(['fail' => 'Invoice Cancel Request Has Been Rejecte , Invoice is moved to rejected invoices list']);
+
+
+        }
+
+        public function rejectedInvoices(){
+            $invoices = Invoice::where('status','rejected')->get();
+
+            return view('invoices.rejected-invoices',['invoices'=>$invoices]);
+
+        }
+
+
+
 }
 
 

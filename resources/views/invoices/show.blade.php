@@ -16,6 +16,12 @@
 
                     <div class="alert alert-success m-3" role="alert">{{ session('success') }}</div>
                     @endif
+
+                    @if (session('warning'))
+
+                    <div class="alert alert-warning m-3" role="alert">{{ session('warning') }}</div>
+                    @endif
+
                     @if ($errors->has('fail'))
                         <div class="alert alert-danger m-3">
                             {{ $errors->first('fail') }}
@@ -33,6 +39,7 @@
                                         <th>Patient</th>
                                         <th>Invoice For Sample</th>
                                         <th>Invoice </th>
+                                        <th></th>
                                         
                                     
                                         
@@ -53,6 +60,10 @@
                                             <td>No Sample Attached (invoice added by admin)</td>
                                             @endif
                                             <td style="color:green;">{{$invoice->total_invoice}}</td>
+                                            <td>
+                                            <a href="{{ route('invoices.cancel_request',  ['id'=>$invoice['id']]) }}" class="btn btn-success btn-xs">Request Invoice Cancel</a>
+
+                                            </td>
 
                                         </tr>
                                         @endforeach

@@ -30,8 +30,11 @@
                 <div class="col-md-6">
                 <label for="new_debit" class="small mb-1">  Amount You Want To Pay </label>
                 
-                <input type="number" id="new_debit" name="new_debit"  class="form-control" value="{{old('new_debit')}}" />
-                </div> </div>
+                <input type="number" id="new_debit" name="new_debit"  class="form-control" value="{{old('new_debit')}}" required/>
+                @error('new_debit')
+                    {{$message}}
+                @enderror
+            </div> </div>
 
 
 

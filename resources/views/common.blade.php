@@ -267,6 +267,9 @@
                        
                             <a class="nav-link" href="{{route('invoices.index')}}">All Invoices</a>
                             <a class="nav-link" href="{{route('invoices.create')}}">New Invoice</a>
+                            <a class="nav-link" href="{{route('invoices.waiting_invoices')}}">Waiting Invoices</a>
+                            <a class="nav-link" href="{{route('invoices.rejected_invoices')}}">Rejected Invoices</a>
+
 
 
 

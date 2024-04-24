@@ -11,7 +11,7 @@
                     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
                     <div class="card">
-                    <div class="card-header">List of Patients Debits</div>
+                    <div class="card-header">List of patients invoices</div>
                     @if (session('success'))
 
                     <div class="alert alert-success m-3" role="alert">{{ session('success') }}</div>
@@ -22,9 +22,9 @@
                         </div>
                     @endif
 
-                        @if ($debits->isEmpty())
+                        @if ($invoices->isEmpty())
                         <div class="card-body">
-                            <h4>No Patients Debits.</h4>
+                            No Rejected Invoices.
                         </div>
                         @else
                         <div class="card-body">
@@ -34,9 +34,9 @@
                                     <tr style="white-space: nowrap; font-size: 14px;" >
 
                                         <th>Patient</th>
-                                        <th>Debit</th>
-                                        <th>Description</th>
-                                        <th></th>
+                                        <th>Invoices</th>
+                                        <th>Cancel Reason</th>
+
                                     
                                         
 
@@ -45,25 +45,20 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($debits as $debit)
+                                    @foreach ($invoices as $invoice)
                                         <tr style="white-space: nowrap; font-size: 14px;">
 
-                                            <td style="color: black;"><b>{{$debit->patient->name }}</b></td>
+                                            <td style="color: black;"><b>{{$invoice->patient->name }}</b></td>
                                             
 
                       
                                             <td>
-                                                    {{$debit->debit}}
+                                                {{$invoice->total_invoice}}
                                             </td>
-                                            <td>
-                                                @if($debit->description)
-                                                {{$debit->description}}
-                                                @endif
-                                            </td>
-                                            <td>
-                                            <a href="{{route('debits.pay_form' , ['id'=>$debit['id']])}}" class="btn btn-primary btn-sm">
-                                            Pay For Debit {{$debit->debit}} </a>
-                                            </td>
+                                            <td>{{$invoice->cancel_reason}}</td>
+
+                                          
+
 
                                         </tr>
                                     @endforeach
@@ -78,6 +73,7 @@
                      
                     </div>
                 </div>
+
 
 
 
