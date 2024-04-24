@@ -10,7 +10,7 @@ class Invoice extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'patient_id', 'total_invoice', 'total_debits','is_online', 'status',
+        'user_id', 'patient_id', 'total_invoice', 'total_debits','is_online', 'status','sample_id',
     ];
 
 
@@ -21,6 +21,11 @@ class Invoice extends Model
     public function patient(){
         return $this->belongsTo(Patient::class);
     }
+
+    public function sample(){
+        return $this->belongsTo(Sample::class);
+    }
+
 
 
 }

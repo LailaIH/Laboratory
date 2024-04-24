@@ -31,7 +31,7 @@
                                         <th>Sample Institute</th>
                                         <th>Test Name</th>
                                         <th>Original Test Discount</th>
-                                        <th>Sample Discount</th>
+                                        <th>Sample Extra Discount</th>
                                         <th>Patient's Notes</th>
                                     
                                     </tr>
@@ -40,13 +40,14 @@
                                     @foreach ($samples as $sample)
                                         <tr style="white-space: nowrap; font-size: 14px;">
 
-                                            <td>{{ $patient->name }}</td>
-                                            <td>{{ $patient->age }}</td>
+                                            <td style="color: black;"><b>{{ $patient->name }}</b></td>
+                                            <td style="color: blue;">{{ $patient->age }}</td>
                                             <td>{{ $sample->institu->name }}</td>
                                             <td>{{ $sample->test->name }}</td>
-                                            <td>{{ $sample->test->campaign->name }}</td>
-                                            <td>{{ $sample->campaign->name }}</td>
-                                            <td>{{ $sample->pation_note }}</td>
+                                            <td style="color: blue;">{{ $sample->test->campaign->name }}</td>
+                                            <td style="color: blue;">{{ $sample->campaign->name }}</td>
+                                            
+                                            <td>{{ \Illuminate\Support\Str::limit($sample->pation_note, 25) }}</td>
 
                                      
 

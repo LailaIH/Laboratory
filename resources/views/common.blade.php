@@ -266,6 +266,8 @@
                         <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
                        
                             <a class="nav-link" href="{{route('invoices.index')}}">All Invoices</a>
+                            <a class="nav-link" href="{{route('invoices.create')}}">New Invoice</a>
+
 
 
                         </nav>
@@ -366,7 +368,7 @@
 
                                     <a class="nav-link" href="account-security.html">Transfer Package</a>
                                     <a class="nav-link" href="account-security.html">Sent Results</a>
-                                    <a class="nav-link" href="account-security.html">Late Samples</a>
+                                    <a class="nav-link" href="{{route('samples.lateSamples')}}">Late Samples</a>
                                     <a class="nav-link" href="{{route('samples.rejected')}}">Rejected Extra Discount Sample</a>
 
                                 </nav>

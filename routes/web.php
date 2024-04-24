@@ -48,6 +48,7 @@ Route::middleware('admin')->group(function () {
                 
             // Samples Routes 
             Route::get('/samples', [SampleController::class, 'index'])->name('samples.index');
+            Route::get('/late/samples', [SampleController::class, 'lateSamples'])->name('samples.lateSamples');
             Route::get('/samples/create', [SampleController::class, 'create'])->name('samples.create');
             Route::post('/samples/store', [SampleController::class, 'store'])->name('samples.store');
             Route::get('/samples/show/{id}', [SampleController::class, 'show'])->name('samples.show');
@@ -104,6 +105,9 @@ Route::middleware('admin')->group(function () {
         // Invoices
         Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
         Route::get('/invoices/show/{id}', [InvoiceController::class, 'show'])->name('invoices.show');
+        Route::get('/invoices/create', [InvoiceController::class, 'create'])->name('invoices.create');
+        Route::post('/invoices/store', [InvoiceController::class, 'store'])->name('invoices.store');
+        Route::get('/invoices/create-from-samples/{sampleId}/{patientId}', [InvoiceController::class, 'createInvoiceFromSamplesList'])->name('invoices.create_sample_invoice');
 
 
 

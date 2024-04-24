@@ -23,13 +23,15 @@
                     @endif
 
                         @if ($patients->isEmpty())
-                            <p>No Patients Invoices.</p>
+                        <div class="card-body">
+                            <h4>No Patients Invoices.</h4>
+                        </div>
                         @else
                         <div class="card-body">
                           
                                 <table  class="table small-table-text">
                                     <thead>
-                                    <tr >
+                                    <tr style="white-space: nowrap; font-size: 14px;" >
 
                                         <th>Patient</th>
                                         <th>Invoices</th>
@@ -42,9 +44,9 @@
                                     </thead>
                                     <tbody>
                                     @foreach ($patients as $patient)
-                                        <tr>
+                                        <tr style="white-space: nowrap; font-size: 14px;">
 
-                                            <td>{{$patient->name }}</td>
+                                            <td style="color: black;"><b>{{$patient->name }}</b></td>
                                             
 
                       

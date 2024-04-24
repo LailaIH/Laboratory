@@ -10,41 +10,34 @@
                     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
                     <div class="card">
-                    <div class="card-header">List Of Samples</div>
+                    <div class="card-header">List Of Late Samples</div>
                     <div class="card-body">
 
                     @if (session('success'))
                             <div class="alert alert-success">{{ session('success') }}</div>
                             @endif
 
-                            @if (session('warning'))
-                            <div class="alert alert-warning">{{ session('warning') }}</div>
-                            @endif        
-
-                        @if ($samples->isEmpty())
+                        @if (empty($lateSamples))
                         <div class="card-body">
-                         <form method="GET" action="{{route('samples.create')}}">
-                             <div class="col-md-6">
-                             <label class="small mb-1 mr-5" for="max_products">No Samples</label>
-                             <button type="submit" class="btn btn-primary btn-xs">Add Sample</button>
-                             </div>
-                         </form>
+                       
+                            
+                             <h3 >No Late Samples</h3>
+                             
+                        
                          </div>
                         @else
                             
-                           <div >
+                           
                             <div class="card-body">
                                 <table  class="table small-table-text">
                                     <thead>
-                                    <tr style="white-space: nowrap; font-size: 11.5px;" >
+                                    <tr style="white-space: nowrap; font-size: 12px;" >
 
                                         <th>Sample</th>
                                         <th>Test</th>
                                         <th>Is Online?</th>
-                                        <th></th>
-                                        <th>Extra Discount For This Sample</th>
-                                        <th>Test's Original Discount</th>
-                                        <th>Actions</th>
+                                       
+                                        
                                         
 
 
@@ -52,8 +45,8 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($samples as $sample)
-                                        <tr style="white-space: nowrap; font-size: 11.5px;">
+                                    @foreach ($lateSamples as $sample)
+                                        <tr style="white-space: nowrap; font-size: 12px;">
 
                                             <td>Sample for   <b>{{ $sample->patient->name }}</b></td>
                                             <td>{{$sample->test->name}}</td>
@@ -70,22 +63,11 @@
                                                     @csrf
                                                     @method('PATCH')
 
-                                                    <button type="submit" class="btn btn-danger btn-xs">Change</button>
+                                                    <button type="submit" class="btn btn-danger btn-xs">Change Status</button>
 
                                                 </form> 
                                             </td>
-                                            <td>{{$sample->campaign->name}}</td>
-                                            <td>{{$sample->test->campaign->name}}</td>
-                                            
-                                            <td>
-                                                
-                                                <a href="{{ route('samples.edit',  ['id'=>$sample['id']]) }}" class="btn btn-primary btn-xs">Edit</a>
-                                                <a href="{{ route('samples.discount',  ['id'=>$sample['id']]) }}" class="btn btn-primary btn-xs">Request Extra Discount</a>
-                                                <a href="{{ route('invoices.create_sample_invoice',  ['sampleId'=>$sample['id'] ,'patientId'=>$sample->patient->id] ) }}" class="btn btn-success btn-xs">Set Invoice</a>
-                                                
-                                            </td>
-
-                                        </tr>
+                                             </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -98,11 +80,6 @@
                      
                     </div>
                 </div>
-
-
-
-
-
 
 
 

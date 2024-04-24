@@ -137,21 +137,21 @@ class SampleController extends Controller
 
 
 
-    // function for viewing samples with no discounts
-    // public function noDiscountSamples(){
-    //     $noDiscountSamples = Sample::whereHas('campaign', function ($query) {
-    //         $query->where('name', 'no discount');
-    //     })->get();
-
-    //     return view('samples.no_discount_samples',['noDiscountSamples'=>$noDiscountSamples]);
-
-    
-    // }
+ 
 
 
     public function discountReason($id){
         $sample = Sample::findOrFail($id);
+        if($sample->status=='waiting'){
+            return redirect()->back()->with('warning','extra discount has already been requested for this sample , and it is in the waiting list' );
+        }
+        elseif($sample->status=='rejected'){
+            return redirect()->back()->with('warning','extra discount has already been requested and rejected for this sample , and it is in the rejection list' );
+
+        }
+        else{
         return view('samples.discount-reason',['sample'=>$sample]);
+        }
     }
 
     public function storeReason(Request $request , $id){
@@ -216,30 +216,30 @@ class SampleController extends Controller
     }
 
 
-    public function lateSamplesList(){
-        $samplesWithResults = Sample::has('result')->get();
-        $lateSamples = [];
 
-        foreach($samplesWithResults as $sample){
-            $test_result_time = $sample->test->result_time; // in hours
+ public function lateSamples(){
+            // get samples that have results entered
+            $samples = Sample::has('result')->get();
+            $lateSamples =[];
 
-
-            $sample_created_at = $sample->created_at;
-            $result_created_at = $sample->result->created_at;
-            $differenceInHours = $sample_created_at->diffInHours($result_created_at);
-
-            if($differenceInHours > $test_result_time ){
-
-                $lateSamples[] = $sample;
+            // samples that already have results but were entered late
+            foreach($samples as $sample){
+                if($sample->result_entry_due && $sample->result_entry_due < $sample->result->created_at){
+                    $lateSamples[]=$sample;
+                }
             }
-            
-            
+
+            // samples that exceeded the result entry date and haven't yet enter a result
+            $noResultsSamples = Sample::doesntHave('result')->get();
+            foreach($noResultsSamples as $noResultsSample){
+                if($noResultsSample->result_entry_due && $noResultsSample->result_entry_due < Carbon::now()){
+                    $lateSamples[]=$noResultsSample;
+                }
+            }
+
+            return view('samples.late-samples' , ['lateSamples'=>$lateSamples]);
+
 
         }
-
-        return view('samples.late-samples' , ['lateSamples'=>$lateSamples]);
-
-
-}
 
 }

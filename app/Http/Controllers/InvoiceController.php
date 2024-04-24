@@ -13,8 +13,10 @@ class InvoiceController extends Controller
 {
     // invoices of patients
     public function index(){
+        // get all the patients who have invoices
+        $patients = Patient::has('invoices')->get();
 
-        return view('invoices.index',['patients'=>Patient::all()]);
+        return view('invoices.index',['patients'=>$patients]);
 
     }
 
@@ -22,44 +24,91 @@ class InvoiceController extends Controller
 
 
         $patient = Patient::findOrFail($id);
-        $samples = Sample::where('patient_id', $id)->get();
-        $debits = Debit::where('patient_id', $id)
-        ->where('debit', '>', 0)
-        ->get();
-        $totalSamples = 0;
-        $totalDebits = 0;
+        $invoices = $patient->invoices ;
 
-        if(!$samples->isEmpty()){
-            foreach($samples as $sample){
-                $maxDiscount = max($sample->campaign->discount , $sample->test->campaign->discount);
+        $total =0;
+        foreach($invoices as $invoice){
+            $total+= $invoice->total_invoice;
+        }
 
-               
-                $totalSamples += ($sample->test->price*(1-$maxDiscount))-$sample->paid_amount;
-               
-               
-            } }
 
-            $totalSamples = abs($totalSamples);
-            
-        if(!$debits->isEmpty())   {
-            foreach($debits as $debit){
-            $totalDebits += $debit->debit ; }
-        } 
 
-        return view('invoices.show' , ['debits'=>$debits ,
-        'totalSamples'=>$totalSamples,
-        'totalDebits'=>$totalDebits
+        return view('invoices.show' , ['patient'=>$patient ,
+        'invoices'=>$invoices,
+        'total'=>$total
+        
     
     ]);
 
 
         }
 
-    }
+        // invoice creation form for adding one by admin
+        public function create(){
+            $patients = Patient::all();
+            return view('invoices.create',['patients'=>$patients]);
+
+        }
+    
+
+       
+
+        // store invoice from a form request with no sample (extra invoice)
+        public function store(Request $request){
+            $request->validate([
+                'patient_id'=>'required',
+                'total_invoice'=>'required',
+            ]);
+
+            $invoice = new Invoice();
+            $invoice->user_id = auth()->user()->id;
+            $invoice->patient_id = strip_tags($request->input('patient_id'));
+            $invoice->total_invoice = strip_tags($request->input('total_invoice'));
+            $invoice->save();
+
+            return redirect()->route('invoices.index')->with('success','invoice has been created successfully');
+
+        }
+
+        // create invoice for a patien'ts specific sample
+        public function createInvoiceFromSamplesList($sampleId , $patientId){
+
+            $sample = Sample::findOrFail($sampleId);
+            $maxDiscount = max($sample->campaign->discount , $sample->test->campaign->discount);
+            $total = ($sample->test->price*(1-$maxDiscount))-$sample->paid_amount;
+
+
+            $existingInvoice = Invoice::where('patient_id',$patientId)
+            ->where('sample_id',$sampleId)->first();
+
+            // if it exist , update the invoice value ,
+            // an extra discount may have been requested after setting the invoice for that patient sample
+            if($existingInvoice){
+                $existingInvoice->total_invoice = $total;
+                $existingInvoice->save();
+                return redirect()->route('invoices.index')->with('success',' invoice value have been set again successfully');
+
+            }
+
+            else{
+            
+            $invoice = new Invoice();
+            $invoice->user_id = auth()->user()->id;
+            $invoice->sample_id = $sampleId;
+            $invoice->patient_id = $patientId;
+               
+            $invoice->total_invoice = $total;
+           
+            $invoice->save(); 
+            return redirect()->route('invoices.index')->with('success','invoice has been created successfully');
+
+            }
 
 
 
+        }
 
+}
 
 
 

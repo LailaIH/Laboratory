@@ -31,7 +31,7 @@
                 <div class="col-md-6">
                 <label for="debit" class="small mb-1"> Debit Amount </label>
                 
-                <input type="number" id="debit" name="debit"  class="form-control" value="{{old('search')}}" />
+                <input type="number" id="debit" name="debit"  class="form-control" value="{{old('debit')}}" />
                 @error('debit')
                     {{$message}}
                 @enderror
@@ -40,7 +40,7 @@
                 <br>
                 <div class="col-12">
                     <label for="description" class="small mb-1">Debit Description</label>
-                    <textarea class="form-control" id="description" name="description"  value="{{old('body')}}"> 
+                    <textarea class="form-control" id="description" name="description"  value="{{old('description')}}"> 
 
                     </textarea>
                  </div>  

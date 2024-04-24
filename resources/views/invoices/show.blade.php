@@ -11,7 +11,7 @@
                     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
                     <div class="card">
-                    <div class="card-header">Invoice</div>
+                    <div class="card-header">Invoices List For {{$patient->name}}</div>
                     @if (session('success'))
 
                     <div class="alert alert-success m-3" role="alert">{{ session('success') }}</div>
@@ -27,11 +27,13 @@
                           
                                 <table  class="table small-table-text">
                                     <thead>
-                                    <tr style="white-space: nowrap; font-size: 12px;">
+                                    <tr style="white-space: nowrap; font-size: 14px;">
                                     
 
-                                        <th>Total Invoice For Samples</th>
-                                        <th>Total Debits</th>
+                                        <th>Patient</th>
+                                        <th>Invoice For Sample</th>
+                                        <th>Invoice </th>
+                                        
                                     
                                         
 
@@ -40,36 +42,25 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    
-                                        <tr>
+                                    @foreach($invoices as $invoice)
+                                        <tr style="white-space: nowrap; font-size: 14px;">
 
-                                            <td>{{$totalSamples }}</td>
+                                            <td style="color: black;"><b>{{$patient->name}}</b></td>
                                             
-
-                      
-                                            
-                                            <td>{{$totalDebits }}</td>
-                                            
+                                            @if($invoice->sample_id !=null)
+                                            <td>{{$invoice->sample->test->name }}</td>
+                                            @else
+                                            <td>No Sample Attached (invoice added by admin)</td>
+                                            @endif
+                                            <td style="color:green;">{{$invoice->total_invoice}}</td>
 
                                         </tr>
+                                        @endforeach
                                    
                                     </tbody>
                                 </table>
 
-                                @if(!$debits->isEmpty())
-                                <br>
-                                <div >Patient's Debits :</div>
-                                <br>
-                                <ul> 
-                                @foreach($debits as $debit)
-                                <li>
-                                    <a href="{{route('debits.pay_form' , ['id'=>$debit['id']])}}" >
-                               <p> Pay For Debit {{$debit->debit}} </p></li>
-                                   </a>
-                                @endforeach
-                                </ul>
-
-                                @endif
+                     <h4 style="color: green;">Total : {{$total}}</h4>
 
 
 

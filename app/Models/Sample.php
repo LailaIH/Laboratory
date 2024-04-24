@@ -54,4 +54,8 @@ class Sample extends Model
     {
         return $this->hasOne(Result::class);
     }
+
+    public function invoice(){
+        return $this->hasOne(Invoice::class);
+    }
 }

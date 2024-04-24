@@ -77,7 +77,7 @@ class DebitController extends Controller
         return redirect()->route('invoices.show',$patient->id);
         }
 
-        return redirect()->route('debits.pay_form' , $id)->with('warning','Amount you entered is greater than original edit');
+        return redirect()->route('debits.pay_form' , $id)->with('warning','Amount you entered is greater than your original debit');
 
 
     }
