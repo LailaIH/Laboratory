@@ -1,7 +1,6 @@
 @extends('common')
 @section('content')
 
-
         <!-- Main page content-->
         <div class="container mt-n5">
 
@@ -104,7 +103,9 @@
 
 
 
-
+<script>
+    let table = new DataTable('#myTable');
+</script>
 
 
 

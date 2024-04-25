@@ -1,6 +1,10 @@
 @extends('common')
 @section('content')
 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
+
 
         <!-- Main page content-->
         <div class="container mt-n5">
@@ -29,7 +33,7 @@
                         @else
                         <div class="card-body">
                           
-                                <table  class="table small-table-text">
+                                <table id="myTable" class="table small-table-text">
                                     <thead>
                                     <tr style="white-space: nowrap; font-size: 14px;" >
 
@@ -80,5 +84,7 @@
                 </div>
 
 
-
+<script>
+    let table = new DataTable('#myTable');
+</script>
 @endsection

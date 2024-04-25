@@ -26,7 +26,7 @@
                             
                            <div >
                             <div class="card-body">
-                                <table  class="table small-table-text">
+                                <table id="myTable" class="table small-table-text">
                                     <thead>
                                     <tr style="white-space: nowrap; font-size: 14px;" >
 
@@ -69,5 +69,7 @@
                 </div>
 
 
-
+ <script>
+    let table = new DataTable('#myTable');
+</script>
 @endsection

@@ -72,7 +72,7 @@
                                                         @csrf
                                                         <div class="row gx-3 mb-3">
                                                         <div class="col-md-6">
-                                                        <input class="form-control" placeholder="enter rejection reason" name="reason"/>
+                                                        <textarea class="form-control" placeholder="enter rejection reason" name="reason"></textarea>
                                                         @error('reason')
                                                             {{$message}}
                                                         @enderror</div>
