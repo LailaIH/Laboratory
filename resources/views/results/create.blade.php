@@ -8,12 +8,19 @@
      <div class="alert alert-success">{{ session('warning') }}</div>
     @endif
 
+
+
+
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
         <div class="card">
         <div class="card-header">Create A New Result</div>
         <div class="card-body">
-
+        @if($warningMessage)
+    <div class="alert alert-warning">
+        {{ $warningMessage }} <a href="{{route('test_results.create')}}"> here</a>
+    </div>
+@endif
 
         <form action="{{ route('results.store' , ['id'=>$sample['id']]) }}" method="POST" class="row g-3">
                 @csrf
@@ -29,7 +36,7 @@
                     <select name="body" id="body" class="form-select">
                     <option value="">Select a Result</option>
                     @foreach ($results as $result)
-                        <option value="{{ $result }}">{{ $result }}</option>
+                        <option value="{{ $result->result }}">{{ $result->result }}</option>
                     @endforeach
                 </select>
                 @error('body')

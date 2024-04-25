@@ -115,7 +115,9 @@ class SampleController extends Controller
         $sample->pation_note = $data['notes'];
         
         $sample->is_approved_doctor = false;
-        
+        if($request->filled('result_entry_due')){
+        $sample->result_entry_due = $request->input('result_entry_due');
+        }
 
         
 

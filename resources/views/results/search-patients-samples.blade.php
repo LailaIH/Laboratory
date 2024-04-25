@@ -27,7 +27,7 @@
                 <label for="search" class="form-label"> Enter The Patient Name To find Their Sample/s </label>
 
                 <div class="col-md-6">
-                <input type="text" id="search" name="search" placeholder="Search" class="form-control" value="{{old('search')}}" />
+                <input type="text" id="search" name="search" placeholder="Search" class="form-control" value="{{old('search')}}" required />
                 </div>
 
 
@@ -39,7 +39,7 @@
             @if(isset($samples) && $samples->isNotEmpty())
             @foreach($samples as $sample)
             <br>
-                <a class="btn btn-success" href="{{ route('results.create', ['id' => $sample->id]) }}">
+                <a class="btn btn-outline-success" href="{{ route('results.create', ['id' => $sample->id]) }}">
                     Enter Machine Results For Sample {{ $sample->test->name }} Test Of Patient {{ $sample->patient->name }}
                 </a>
                 <br>

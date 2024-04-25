@@ -9,6 +9,8 @@ use App\Http\Controllers\DebitController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\Test_ThirdpartyController;
+use App\Http\Controllers\Test_ResultController;
+
 
 
 
@@ -65,7 +67,16 @@ Route::middleware('admin')->group(function () {
             Route::post('/samples/approve-reason/{id}', [SampleController::class, 'approveDiscountReason'])->name('samples.approve_discount_reason');
             Route::post('/samples/reject-reason/{id}', [SampleController::class, 'rejectDiscountReason'])->name('samples.reject_discount_reason');
 
-            //Results Routes    
+            // test results routes 
+            Route::get('/test/results', [Test_ResultController::class, 'index'])->name('test_results.index');
+            Route::get('/test/results/create', [Test_ResultController::class, 'create'])->name('test_results.create');
+            Route::post('test/results/store', [Test_ResultController::class, 'store'])->name('test_results.store');
+
+
+
+
+
+            //Results Routes    (sample results)
             Route::get('/results', [ResultController::class, 'index'])->name('results.index');
             Route::get('/results/create/{id}', [ResultController::class, 'create'])->name('results.create');
             Route::post('/results/store/{id}', [ResultController::class, 'store'])->name('results.store');

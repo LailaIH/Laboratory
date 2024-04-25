@@ -168,13 +168,18 @@
                     {{$message}}
                 @enderror
                 </div> </div>
-              
+
+                <div class="row gx-3 mb-3">
+               <div class="col-md-8">
+                    <label for="result_entry_due" class="small mb-1">Enter Result's entry due date</label>
+                    <input placeholder="yy-mm-dd" type="date" class="form-control" id="result_entry_due" name="result_entry_due" value="{{ old('result_entry_due') }}">
+                </div> 
            
                 
-                <div class="col-12">
+                <div class="col-md-3">
                     <br>
                 <button type="submit" class="btn btn-primary">Create Sample</button>
-                </div>
+                </div></div>
             </form>
 
 

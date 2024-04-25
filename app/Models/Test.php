@@ -59,6 +59,10 @@ class Test extends Model
     }
 
     public function test_thirdparties(){
-        return $this->hasMany(Test_Thirdparty::class());
+        return $this->hasMany(Test_Thirdparty::class);
+    }
+
+    public function test_results(){
+        return $this->hasMany(Test_Result::class);
     }
 }

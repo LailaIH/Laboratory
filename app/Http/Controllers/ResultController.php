@@ -70,12 +70,13 @@ class ResultController extends Controller
     public function create($id){
         $sample = Sample::findOrFail($id);
         $test = $sample->test ;
-        $results = $test->results;
-        $nonNullResults = array_filter($results, function ($value) {
-            return $value !== null;
-        });
+        $results = $test->test_results ; 
+
+        $warningMessage = $results->isEmpty() ? 'No results attached to this test. Please create results for this test' : null;
+
+       
         
-        return view('results.create',['sample'=>$sample ,'results'=>$nonNullResults]);
+        return view('results.create',['sample'=>$sample ,'results'=>$results ,'warningMessage' => $warningMessage]);
     }
 
     public function store(Request $request ,$id){

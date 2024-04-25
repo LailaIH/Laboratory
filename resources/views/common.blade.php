@@ -277,6 +277,25 @@
                     </div>
 
 
+                
+                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards226" aria-expanded="false" aria-controls="collapseDashboards226">
+                        <div class="nav-link-icon"><i class="fa-solid fa-bed-pulse"></i></div>
+                        Tests_Results
+                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseDashboards226" data-bs-parent="#accordionSidenav">
+                        <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
+                        <a class="nav-link" href="{{route('test_results.create')}}">
+                                New Test/Result Attachment
+                                <span class="badge bg-primary-soft text-primary ms-auto"><i class="fa-solid fa-plus"></i></span>
+                            </a>
+                            <a class="nav-link" href="{{route('test_results.index')}}">All Tests With Their Results</a>
+
+
+                        </nav>
+                    </div>
+
+
 
 
                     <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards224" aria-expanded="false" aria-controls="collapseDashboards224">

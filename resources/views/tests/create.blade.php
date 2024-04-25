@@ -77,28 +77,6 @@
                 </div>
 
 
-<br>
-
-
-
-
-
-
-            <div class="row gx-3 mb-3">
-            <label for="results" class="small mb-1">Test Potential Results</label>
-                <div class="col-md-4">
-                    
-                    
-                    <input  type="text" name="results[]" class="form-control" placeholder="Result 1"></div>
-                    <div class="col-md-4">
-                    <input type="text" name="results[]" class="form-control" placeholder="Result 2"></div>
-                    <div class="col-md-4">
-                    <input type="text" name="results[]" class="form-control" placeholder="Result 3">
-
-              
-                </div>    </div> 
-
-         
 
 
 

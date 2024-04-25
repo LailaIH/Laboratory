@@ -53,7 +53,6 @@ class TestController extends Controller
             $test->campaign_id = $campaign->id;
         }
         $test->price = strip_tags($request->input('price'));
-        $test->results = $request->input('results');
 
         $test->save();
 

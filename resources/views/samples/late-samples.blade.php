@@ -21,7 +21,7 @@
                         <div class="card-body">
                        
                             
-                             <h3 >No Late Samples</h3>
+                             No Late Samples
                              
                         
                          </div>
