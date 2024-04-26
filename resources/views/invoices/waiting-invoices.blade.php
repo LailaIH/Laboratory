@@ -66,7 +66,7 @@
                                             </td>
 
                                             <td>
-                                            <a href="{{ route('invoices.reject',  ['id'=>$invoice['id']]) }}" class="btn btn-danger btn-xs">Reject Invoice</a>
+                                            <a href="{{ route('invoices.reject',  ['id'=>$invoice['id']]) }}" class="btn btn-danger btn-xs">Reject To Cancel Invoice</a>
 
                                             </td>
 

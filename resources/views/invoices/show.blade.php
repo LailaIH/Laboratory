@@ -61,7 +61,7 @@
                                             @endif
                                             <td style="color:green;">{{$invoice->total_invoice}}</td>
                                             <td>
-                                            <a href="{{ route('invoices.cancel_request',  ['id'=>$invoice['id']]) }}" class="btn btn-success btn-xs">Request Invoice Cancel</a>
+                                            <a href="{{ route('invoices.cancel_request',  ['id'=>$invoice['id']]) }}" class="btn btn-primary btn-xs">Request Invoice Cancel</a>
 
                                             </td>
 

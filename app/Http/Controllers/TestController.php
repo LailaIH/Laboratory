@@ -56,7 +56,7 @@ class TestController extends Controller
 
         $test->save();
 
-        return redirect()->route('admin');
+        return redirect()->route('tests.index')->with('success','test has been created successfully');
 
 
 

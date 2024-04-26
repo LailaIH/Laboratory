@@ -37,7 +37,7 @@
                          {{$message}}
                     @enderror
                 </select>
-                </div> </div> <br>
+                </div> </div>
 
                 <div class="row gx-3 mb-3">
 
@@ -61,7 +61,7 @@
                 @error('price')
                          {{$message}}
                     @enderror
-            </div></div> <br>
+            </div></div> 
 
             <div class="col-12">
                 <label class="small mb-1" for="campaign_id" class="form-label">Campaign</label>
@@ -80,9 +80,9 @@
 
 
 
-                <div class="col-12">
-                <br>
-                <button type="submit" class="btn btn-primary">Create Sample</button></div>
+                <div class="col-12 mt-3">
+                
+                <button type="submit" class="btn btn-primary btn-sm">Create Test</button></div>
             </form>
 
 

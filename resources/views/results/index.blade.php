@@ -24,7 +24,7 @@
                             
                                 <table id="myTable" class="table small-table-text">
                                     <thead>
-                                    <tr style="white-space: nowrap; font-size: 12px;">
+                                    <tr style="white-space: nowrap; font-size: 13px;">
 
                                         <th>Result</th>
                                         <th>Is Online</th>
@@ -42,7 +42,7 @@
                                     </thead>
                                     <tbody>
                                     @foreach ($results as $result)
-                                        <tr style="white-space: nowrap; font-size: 12px;">
+                                        <tr style="white-space: nowrap; font-size: 13px;">
 
                                             <td>Result for   {{ $result->sample->patient->name }}</td>
                                             
@@ -58,7 +58,7 @@
                                                     @csrf
                                                     @method('PATCH')
 
-                                                    <button type="submit" class="btn btn-danger btn-xs">Change Status</button>
+                                                    <button type="submit" class="btn btn-danger btn-xs">Change </button>
 
                                                 </form> 
                                             </td>

@@ -11,19 +11,15 @@
                     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
                     <div class="card">
-                    <div class="card-header">List Of Test And Third Parties Attachements</div>
+                    <div class="card-header">List Of Tests</div>
                     <div class="card-body">
 
-                        @if ($test_thirdparties->isEmpty())
+                        @if ($tests->isEmpty())
                         <div class="card-body">
-                         <form method="GET" action="{{route('test_thirdparies.create')}}">
-                             <div class="col-md-6">
-                             <label class="small mb-1 mr-8" for="max_products">No Attached Tests With Third Parties</label>
-                             <div><br>
-                             <button type="submit" class="btn btn-primary btn-xs">Attcah Test With A Third Party</button></div>
-                             </div>
-                         </form>
-                         </div>
+                         
+                            No Tests Yet
+                        
+                         
                         @else
                             <div class=" mt-3 table-container">
                             @if (session('success'))
@@ -39,20 +35,24 @@
                                     <tr style="white-space: nowrap; font-size: 14px;">
 
                                         <th>Test</th>
-                                        <th>Third Party</th>
+                                        <th>Campaign</th>
                                         
-                                        <th>Given Time</th>
+                                        <th>Original Price</th>
+                                        <th>Group</th>
+                                        <th>Department</th>
                                        
 
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($test_thirdparties as $attachment)
+                                    @foreach ($tests as $test)
                                         <tr style="white-space: nowrap; font-size: 14px;">
 
-                                            <td><b>{{ $attachment->test->name }}</b></td>
-                                            <td><b>{{ $attachment->thirdparty->name }}</b></td>
-                                            <td style="color: blue;">{{ $attachment->given_time }}</td>
+                                            <td><b>{{ $test->name }}</b></td>
+                                            <td style="color: green;"><b>{{ $test->campaign->name}}</b></td>
+                                            <td style="color: blue;">{{ $test->price }}</td>
+                                            <td>{{ $test->group->name }}</td>
+                                            <td>{{ $test->department->name }}</td>
                                 
 
                                               

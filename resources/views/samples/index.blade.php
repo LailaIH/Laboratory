@@ -73,8 +73,8 @@
 
                                                 </form> 
                                             </td>
-                                            <td>{{$sample->campaign->name}}</td>
-                                            <td>{{$sample->test->campaign->name}}</td>
+                                            <td style="color: green;"><b>{{$sample->campaign->name}}</b></td>
+                                            <td style="color: green;"><b>{{$sample->test->campaign->name}}</b></td>
                                             
                                             <td>
                                                 

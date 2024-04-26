@@ -18,13 +18,13 @@
                             @endif
 
                         @if (empty($lateSamples))
-                        <div class="card-body">
+                        
                        
                             
-                             No Late Samples
+                           <p>  No Late Samples</p>
                              
                         
-                         </div>
+                         
                         @else
                             
                            

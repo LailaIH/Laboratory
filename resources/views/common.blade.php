@@ -247,7 +247,7 @@
                     </div>
 
                     <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards222" aria-expanded="false" aria-controls="collapseDashboards222">
-                        <div class="nav-link-icon"><i class="fa-solid fa-bed-pulse"></i></div>
+                        <div class="nav-link-icon"><i class="fa-solid fa-money-bill"></i></div>
                         Debits
                         <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
@@ -267,7 +267,7 @@
 
 
                     <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards223" aria-expanded="false" aria-controls="collapseDashboards223">
-                        <div class="nav-link-icon"><i class="fa-solid fa-bed-pulse"></i></div>
+                        <div class="nav-link-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
                         Invoices
                         <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
@@ -288,7 +288,7 @@
 
                 
                     <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards226" aria-expanded="false" aria-controls="collapseDashboards226">
-                        <div class="nav-link-icon"><i class="fa-solid fa-bed-pulse"></i></div>
+                        <div class="nav-link-icon"><i class="fa-solid fa-square-poll-vertical"></i></div>
                         Tests_Results
                         <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
@@ -308,7 +308,7 @@
 
 
                     <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards224" aria-expanded="false" aria-controls="collapseDashboards224">
-                        <div class="nav-link-icon"><i class="fa-solid fa-bed-pulse"></i></div>
+                        <div class="nav-link-icon"><i class="fa-solid fa-microscope"></i></div>
                         Tests
                         <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
@@ -318,7 +318,7 @@
                                 New Test
                                 <span class="badge bg-primary-soft text-primary ms-auto"><i class="fa-solid fa-plus"></i></span>
                             </a>
-                            <a class="nav-link" href="#">All Tests</a>
+                            <a class="nav-link" href="{{route('tests.index')}}">All Tests</a>
 
 
                         </nav>
@@ -326,7 +326,7 @@
 
 
                     <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards225" aria-expanded="false" aria-controls="collapseDashboards225">
-                        <div class="nav-link-icon"><i class="fa-solid fa-bed-pulse"></i></div>
+                        <div class="nav-link-icon"><i class="fa-solid fa-building-columns"></i></div>
                         Tests With Third Party
                         <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
@@ -380,6 +380,16 @@
                                 <span class="badge bg-primary-soft text-primary ms-auto"><i ></i></span>
                             </a>
 
+                           
+                                <a class="nav-link" href="{{route('samples.rejected')}}">
+                                    Rejected Extra Discount Sample
+                                    <span class="badge bg-primary-soft text-primary ms-auto"><i ></i></span>
+                                </a>
+                                <a class="nav-link" href="{{route('samples.lateSamples')}}">Late Samples
+                            <span class="badge bg-primary-soft text-primary ms-auto"><i ></i></span>
+                            </a>
+
+
                         </nav>
                         <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
                             <!-- Nested Sidenav Accordion (Pages -> Account)-->
@@ -399,9 +409,7 @@
 
                                     <a class="nav-link" href="account-security.html">Transfer Package</a>
                                     <a class="nav-link" href="account-security.html">Sent Results</a>
-                                    <a class="nav-link" href="{{route('samples.lateSamples')}}">Late Samples</a>
-                                    <a class="nav-link" href="{{route('samples.rejected')}}">Rejected Extra Discount Sample</a>
-
+                                    
                                 </nav>
                             </div>
                             <!-- Nested Sidenav Accordion (Pages -> Authentication)-->

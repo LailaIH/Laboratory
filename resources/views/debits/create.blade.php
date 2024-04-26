@@ -50,7 +50,7 @@
                 
                 <div class="col-12">
                     <br>
-                <button type="submit" class="btn btn-primary">Create Debit</button></div>
+                <button type="submit" class="btn btn-primary btn-sm">Create Debit</button></div>
             </form>
 
 

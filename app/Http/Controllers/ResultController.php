@@ -18,7 +18,7 @@ class ResultController extends Controller
     }
 
     public function index(){
-        $results = Result::all();
+        $results = Result::orderByDesc('created_at')->get();
 
         return view('results.index',['results'=>$results]);
     }

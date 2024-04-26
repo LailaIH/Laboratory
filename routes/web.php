@@ -71,6 +71,9 @@ Route::middleware('admin')->group(function () {
             Route::get('/test/results', [Test_ResultController::class, 'index'])->name('test_results.index');
             Route::get('/test/results/create', [Test_ResultController::class, 'create'])->name('test_results.create');
             Route::post('test/results/store', [Test_ResultController::class, 'store'])->name('test_results.store');
+            Route::get('test/results/edit/{id}', [Test_ResultController::class, 'edit'])->name('test_results.edit');
+            Route::put('test/results/update/{id}', [Test_ResultController::class, 'update'])->name('test_results.update');
+
 
 
 
@@ -129,6 +132,7 @@ Route::middleware('admin')->group(function () {
 
 
         //tests
+        Route::get('/tests', [TestController::class, 'index'])->name('tests.index');
         Route::get('/tests/create', [TestController::class, 'create'])->name('tests.create');
         Route::post('/tests/store', [TestController::class, 'store'])->name('tests.store');
 

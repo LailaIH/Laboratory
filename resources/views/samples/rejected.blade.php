@@ -39,7 +39,6 @@
                                         <th>Sample ID</th>
                                         <th>Patient Name</th>
                                         <th>Discount Reason</th>
-                                        <th>Action</th>
                                         
                                         
 
@@ -52,12 +51,9 @@
                                         <tr style="white-space: nowrap; font-size: 14px;">
                                             <td>{{$sample->id}}</td>
                                             <td>{{ $sample->patient->name }}</td>
-                                            <td>{{ $sample->discount_reason }}</td>
+                                            <td>{{ \Illuminate\Support\Str::limit($sample->discount_reason, 35) }}</td>
                                             
-                                <td>
-                                <a href="{{ route('samples.discount',  ['id'=>$sample['id']]) }}" class="btn btn-primary btn-xs">Request Extra Discount</a>
-  
-                                </td>
+      
                          
                                          
 

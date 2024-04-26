@@ -193,7 +193,7 @@ class SampleController extends Controller
     {
         $sample = Sample::findOrFail($id);
         $campaign = Campaign::findOrFail($request->input('campaign_id'));
-        if($sample->test->campaign->discount < $campaign->discount){
+        if($sample->test->campaign->discount < $campaign->discount && $campaign->discount > $sample->campaign->discount ){ 
         $sample->status = 'approved';
         $sample->campaign_id = $request->input('campaign_id'); // extra discount approved , and the test original discount is ignored
         $sample->save();

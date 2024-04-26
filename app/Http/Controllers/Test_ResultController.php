@@ -41,6 +41,30 @@ class Test_ResultController extends Controller
            return redirect()->route('test_results.index')->with('success', 'A new result has been successfully created');
        } 
 
+       public function edit($id){
+
+        $test_result = Test_Result::findOrFail($id);
+        return view('test_results.edit' , ['testResult'=>$test_result , 'tests'=>Test::all()]);
+       }
+
+       public function update(Request $request , $id){
+
+        $test_result = Test_Result::findOrFail($id);
+
+        $request->validate([
+            'test_id'=>'required',
+            'result'=>'required',
+        ]);
+
+        $test_result->test_id = $request->input('test_id');
+        $test_result->result = $request->input('result');
+        $test_result->save();
+
+        return redirect()->route('test_results.index')->with('success','test result has been updated successfully');
+
+
+       }
+
 
    }
    

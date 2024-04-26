@@ -46,7 +46,7 @@
                 @enderror
                 </div></div>
 
-<br>
+
                 <div class="col-12">
                <label for="given_time" class="small mb-1"> Given Time </label>
                 <input type="text" id="given_time" name="given_time" placeholder="given time" class="form-control" value="{{old('given_time')}}" />
@@ -58,9 +58,9 @@
 
 
     
-                <div class="col-12">
-                    <br>
-                <button type="submit" class="btn btn-primary">Create Attachment</button>
+                <div class="col-12 mt-3">
+                    
+                <button type="submit" class="btn btn-primary btn-sm">Create Attachment</button>
                 </div>
             </form>
 

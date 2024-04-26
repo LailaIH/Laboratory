@@ -40,8 +40,10 @@
                                         <th>Sample ID</th>
                                         <th>Patient Name</th>
                                         <th>Discount Reason</th>
-                                        <th>Approve</th>
-                                        <th>Reject</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        
                                         
 
 
@@ -56,27 +58,32 @@
                                             <td>{{ $sample->discount_reason }}</td>
                                             
                                 <td>
+                                
+                                         
                                             <form class="d-inline" action="{{ route('samples.approve_discount_reason', ['id'=>$sample['id']]) }}" method="post">
                                                 @csrf
-                                                <div class="row gx-3 mb-3">
-
-                                                <div class="col-md-6">
-                                                <select name="campaign_id" id="campaign_id" class="form-select">
+                                                
+                                                
+                                                
+                                                <select name="campaign_id" id="campaign_id" class="form-select" >
                                                     <option value="">Select a campaign</option>
                                                     @foreach ($campaigns as $campaign)
                                                         <option value="{{ $campaign->id }}" @if ($sample->test->campaign_id == $campaign->id) selected @endif>{{ $campaign->name }}</option>
                                                     @endforeach
-                                                </select></div>
-                                                <div class="col-md-6">
-                                                <button class="btn btn-success" type="submit">Approve</button></div>
-                                            </form>
-                                </td>
-                                <td>
+                                                </select></td>
+                                                <td>
+                                                
+                                                <button class="btn btn-success btn-sm" type="submit">Approve</button>
+                                                
+                                            </form></td>
+                                            
+                                            <td>
                                             <form action="{{ route('samples.reject_discount_reason', ['id'=>$sample['id']]) }}" method="post">
                                                 @csrf
-                                                <button class="btn btn-danger" type="submit">Reject</button>
-                                            </form>
-                                                                </td>
+                                                <button class="btn btn-danger btn-sm" type="submit">Reject</button>
+                                            </form></td>
+                                        
+                                
                                          
 
 

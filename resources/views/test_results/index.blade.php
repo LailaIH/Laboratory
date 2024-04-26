@@ -44,13 +44,13 @@
                                         <tr style="white-space: nowrap; font-size: 14px;">
 
                                             <td>Result for test  <b>{{ $result->test->name }}</b></td>
-                                            <td>{{$result->result}}</td>
+                                            <td style="color: green;"><b>{{$result->result}}</b></td>
                                             
 
                             
                                             
                                             <td>
-                                                
+                                                <a href="{{route('test_results.edit',['id'=>$result['id'] ] )}}" class="btn btn-primary btn-sm">Edit</a>
                                                 
                                             </td>
 

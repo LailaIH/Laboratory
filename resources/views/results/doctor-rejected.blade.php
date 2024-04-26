@@ -66,7 +66,7 @@
                                               <form action="{{ route('results.destroy', ['id'=>$result['id']]) }}" method="POST" class="d-inline">
                                               @csrf
                                               @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Delete And Re-enter Result</button>
+                                                        <button type="submit" class="btn btn-danger btn-sm ">Delete And Re-enter Result</button>
                                                     </form> </td>
                                             </td>
 

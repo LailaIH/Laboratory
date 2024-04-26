@@ -32,8 +32,8 @@
 
 
                 
-                <div class="col-md-6">
-                <button type="submit" class="btn btn-primary">Find Samples</button></div></div>
+                <div class="col-md-6 mt-1">
+                <button type="submit" class="btn btn-primary btn-sm">Find Samples</button></div></div>
             </form>
 
             @if(isset($samples) && $samples->isNotEmpty())

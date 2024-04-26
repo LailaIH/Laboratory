@@ -47,7 +47,7 @@
                                             <td style="color: blue;">{{ $sample->test->campaign->name }}</td>
                                             <td style="color: blue;">{{ $sample->campaign->name }}</td>
                                             
-                                            <td>{{ \Illuminate\Support\Str::limit($sample->pation_note, 25) }}</td>
+                                            <td>{{ \Illuminate\Support\Str::limit($sample->pation_note, 35) }}</td>
 
                                      
 

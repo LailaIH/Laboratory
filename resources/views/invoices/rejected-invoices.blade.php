@@ -11,7 +11,7 @@
                     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
                     <div class="card">
-                    <div class="card-header">List of patients invoices</div>
+                    <div class="card-header">List of Rejected Patients Invoices Canceling</div>
                     @if (session('success'))
 
                     <div class="alert alert-success m-3" role="alert">{{ session('success') }}</div>
@@ -52,10 +52,10 @@
                                             
 
                       
-                                            <td>
+                                            <td style="color: blue;">
                                                 {{$invoice->total_invoice}}
                                             </td>
-                                            <td>{{$invoice->cancel_reason}}</td>
+                                            <td>{{\Illuminate\Support\Str::limit($invoice->cancel_reason, 35)}}</td>
 
                                           
 

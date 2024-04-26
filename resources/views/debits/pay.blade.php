@@ -41,7 +41,7 @@
                 
                 <div class="col-12">
                     <br>
-                <button type="submit" class="btn btn-primary">Pay Debit</button></div>
+                <button type="submit" class="btn btn-primary btn-sm">Pay Debit</button></div>
             </form>
 
 

@@ -65,19 +65,19 @@
                                             <td>
                                                 <form action="{{ route('results.admin_approve', ['id'=>$result['id']]) }}" method="POST" class="d-inline">
                                                         @csrf
-                                                        <button type="submit" class="btn btn-success">Approve</button>
+                                                        <button type="submit" class="btn btn-success btn-sm">Approve</button>
                                                     </form></td>
                                                     <td>
                                                     <form action="{{ route('results.admin_reject', ['id'=>$result['id']]) }}" method="POST" class="d-inline">
                                                         @csrf
                                                         <div class="row gx-3 mb-3">
                                                             <div class="col-md-6">
-                                                        <textarea class="form-control" placeholder="enter rejection reason" name="reason"></textarea>
+                                                        <input class="form-control" placeholder="enter rejection reason" name="reason"/>
                                                         @error('reason')
                                                             {{$message}}
                                                         @enderror</div>
                                                         <div class="col-md-6">
-                                                        <button type="submit" class="btn btn-danger">Reject</button></div></div>
+                                                        <button type="submit" class="btn btn-danger btn-sm">Reject</button></div></div>
                                                     </form> </td>
                                             
 

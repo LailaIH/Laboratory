@@ -24,7 +24,7 @@
                             <div class="card-body">
                                 <table  class="table small-table-text">
                                     <thead>
-                                    <tr >
+                                    <tr style="white-space: nowrap; font-size: 14px;" >
 
                                         <th>Patient Name</th>
                                         <th>Quotation List</th>
@@ -37,13 +37,13 @@
                                     </thead>
                                     <tbody>
                                     @foreach ($patientsWithSamples as $patient)
-                                        <tr>
+                                        <tr style="white-space: nowrap; font-size: 14px;">
 
                                             <td>{{ $patient->name }}</td>
                                             
 
                                             <td>
-                                        <a href="{{route('patients.price_quotation',['id'=>$patient['id']])}}" class="btn btn-success">Show Price Quotation List</a>
+                                        <a href="{{route('patients.price_quotation',['id'=>$patient['id']])}}" class="btn btn-success btn-sm">Show Price Quotation List</a>
                  
                                             </td>
                                             

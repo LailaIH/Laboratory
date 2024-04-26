@@ -48,7 +48,7 @@
                 
                 <div class="col-12">
                    
-                <button type="submit" class="btn btn-primary">Create Invoice</button></div>
+                <button type="submit" class="btn btn-primary btn-sm">Create Invoice</button></div>
             </form>
 
 

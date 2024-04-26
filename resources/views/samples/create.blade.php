@@ -39,7 +39,7 @@
                 @enderror
                 </div>
             </div> 
-            <br> 
+           
 
                 <div class="row gx-3 mb-3">
                 <br>
@@ -70,7 +70,7 @@
                     {{$message}}
                 @enderror
                 </div></div>
-                <br>
+                
              <div class="row gx-3 mb-3">
                 <div class="col-md-6">
                     <label for="institu_id" class="small mb-1">Institute</label>
@@ -100,7 +100,7 @@
                 @enderror
                 </div> </div>
 
-                <br>
+                
 
                 <div class="row gx-3 mb-3">
                 <div class="col-md-4">
@@ -146,7 +146,7 @@
                 
                 </div>     </div>  
                 
-                <br>
+                
                 <div class="row gx-3 mb-3">
                 <div class="col-md-6">
                     <label for="paid_amount" class="small mb-1">Paid Amount</label>
@@ -176,9 +176,9 @@
                 </div> 
            
                 
-                <div class="col-md-3">
-                    <br>
-                <button type="submit" class="btn btn-primary">Create Sample</button>
+                <div class="col-12 mt-3">
+                    
+                <button type="submit" class="btn btn-primary btn-sm">Create Sample</button>
                 </div></div>
             </form>
 

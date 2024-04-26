@@ -10,7 +10,7 @@
         @endif
 
             <div class="card">
-            <div class="card-header">Reason For Cancek Request</div>
+            <div class="card-header">Reason For Invoice Canceling Request</div>
                 
 
 
@@ -20,15 +20,15 @@
                     <div class="card-body">
                     <form action="{{ route('invoices.store_cancel_reason' , ['id'=>$invoice['id']]) }}" method="POST">
                             @csrf
-                            <div class="row">
-                            <div class="col-md-6">
+                            
+                            <div class="col-md-8">
                             <input class="form-control" type="text" id='cancel_reason' name="cancel_reason" placeholder="Invoice canceling reason" value="{{old('cancel_reason')}}" required>
                                     @error('total_invoice')
                                      {{$message}}
                                     @enderror</div>
-                                 <div class="col-md-6">
+                                 <div class="col-12 mt-3">
                                     
-                            <button class="btn btn-success" type="submit">Submit</button></div></div>
+                            <button class="btn btn-danger btn-sm" type="submit">Submit</button></div>
                         </form>
 
                     </div>
