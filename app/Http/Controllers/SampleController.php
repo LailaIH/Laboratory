@@ -57,14 +57,12 @@ class SampleController extends Controller
             'search'=>'required|string', //patient's name
             'branch_id'=>'required',
             'doctor_id'=>'required',
-            'institute_id'=>'required',
             'payment_id'=>'required',
             'test_id'=>'required',
             
             
             
             'gross_amount'=>'required|numeric',
-            'paid_amount'=>'required|numeric',
             'test_id'=>'required',
             'money_note'=>'string',
             'notes'=>'string',
@@ -102,15 +100,13 @@ class SampleController extends Controller
         $sample->user_id = auth()->user()->id;
         $sample->branch_id	= $data['branch_id'];
         $sample->doctor_id	= $data['doctor_id'];
-        $sample->institu_id	= $data['institute_id'];
         $sample->payment_id	= $data['payment_id'];
         $sample->test_id = $data['test_id'];
         
         $sample->campaign_id = $campaign->id;
         $sample->admission_date = $data['admission'];
         $sample->gross_amount = $data['gross_amount'];
-        $sample->paid_amount = $data['paid_amount'];
-        $sample->remain_amount = $test->price - $data['paid_amount'];
+        
         $sample->money_note = $data['money_note'];
         $sample->pation_note = $data['notes'];
         

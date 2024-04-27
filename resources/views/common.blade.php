@@ -246,22 +246,7 @@
                         </nav>
                     </div>
 
-                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards222" aria-expanded="false" aria-controls="collapseDashboards222">
-                        <div class="nav-link-icon"><i class="fa-solid fa-money-bill"></i></div>
-                        Debits
-                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                    </a>
-                    <div class="collapse" id="collapseDashboards222" data-bs-parent="#accordionSidenav">
-                        <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                            <a class="nav-link" href="{{route('debits.create')}}">
-                                New Debit
-                                <span class="badge bg-primary-soft text-primary ms-auto"><i class="fa-solid fa-plus"></i></span>
-                            </a>
-                            <a class="nav-link" href="{{route('debits.index')}}">All Debits</a>
-
-
-                        </nav>
-                    </div>
+                    
 
 
 

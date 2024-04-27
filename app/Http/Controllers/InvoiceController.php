@@ -30,10 +30,8 @@ class InvoiceController extends Controller
         $patient = Patient::findOrFail($id);
         $invoices = $patient->invoices ;
 
-        $total =0;
-        foreach($invoices as $invoice){
-            $total+= $invoice->remaining_amount;
-        }
+        $total = $invoices->where('is_online', 1)->sum('remaining_amount');
+
 
 
 
@@ -70,6 +68,7 @@ class InvoiceController extends Controller
             $invoice->total_invoice = strip_tags($request->input('total_invoice'));
             $invoice->remaining_amount = strip_tags($request->input('total_invoice'));
             $invoice->paying_status='pending';
+            $invoice->is_online = 1;
             $invoice->save();
 
             return redirect()->route('invoices.index')->with('success','invoice has been created successfully');
@@ -81,7 +80,7 @@ class InvoiceController extends Controller
 
             $sample = Sample::findOrFail($sampleId);
             $maxDiscount = max($sample->campaign->discount , $sample->test->campaign->discount);
-            $total = ($sample->test->price*(1-$maxDiscount))-$sample->paid_amount;
+            $total = ($sample->test->price*(1-$maxDiscount));
 
 
             $existingInvoice = Invoice::where('patient_id',$patientId)
@@ -91,6 +90,9 @@ class InvoiceController extends Controller
             // an extra discount may have been requested after setting the invoice for that patient sample
             if($existingInvoice){
                 $existingInvoice->total_invoice = $total;
+                $existingInvoice->remaining_amount=$total ;
+                $existingInvoice->paid_amount = 0;
+                $existingInvoice->paying_status = 'pending';
                 $existingInvoice->save();
                 return redirect()->route('invoices.index')->with('success',' invoice value have been set again successfully');
 
@@ -102,9 +104,9 @@ class InvoiceController extends Controller
             $invoice->user_id = auth()->user()->id;
             $invoice->sample_id = $sampleId;
             $invoice->patient_id = $patientId;
-            $invoice->paying_status='pending';
             $invoice->total_invoice = $total;
-            $invoice->remaining_amount=$total;
+            $invoice->remaining_amount = $total ;
+            $invoice->is_online = 1;
            
             $invoice->save(); 
             return redirect()->route('invoices.index')->with('success','invoice has been created successfully');
@@ -153,7 +155,10 @@ class InvoiceController extends Controller
 
         public function cancel($id){
 
-            Invoice::destroy($id);
+            $invoice = Invoice::findOrFail($id);
+            $invoice->status = 'approved';
+            $invoice->is_online = 0;
+            $invoice->save();
             return redirect()->route('invoices.waiting_invoices')->withErrors(['fail' => 'Invoice Has Been Canceled']);
 
         }
@@ -190,6 +195,8 @@ class InvoiceController extends Controller
             ]);
 
             $invoice = Invoice::findOrFail($id);
+
+          
             $patientId = $invoice->patient->id;
             $oldInvoice = $invoice->total_invoice ;
             $oldPaidAmount = $invoice->paid_amount;

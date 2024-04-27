@@ -24,7 +24,7 @@
 
                         @if ($patients->isEmpty())
                         <div class="card-body">
-                            <h4>No Patients Invoices.</h4>
+                            No Patients Invoices.
                         </div>
                         @else
                         <div class="card-body">

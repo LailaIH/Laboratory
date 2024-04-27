@@ -33,7 +33,7 @@
                           
                                 <table  class="table small-table-text">
                                     <thead>
-                                    <tr style="white-space: nowrap; font-size: 14px;">
+                                    <tr style="white-space: nowrap; font-size: 12px;">
                                     
 
                                         <th>Patient</th>
@@ -42,6 +42,7 @@
                                         <th>Paid Amount</th>
                                         <th>Remaining Amount</th>
                                         <th>Paying Status</th>
+                                        <th>Is Online</th>
                                         <th></th>
                                         
                                     
@@ -53,7 +54,7 @@
                                     </thead>
                                     <tbody>
                                     @foreach($invoices as $invoice)
-                                        <tr style="white-space: nowrap; font-size: 14px;">
+                                        <tr style="white-space: nowrap; font-size: 12px;">
 
                                             <td style="color: black;"><b>{{$patient->name}}</b></td>
                                             
@@ -66,13 +67,18 @@
                                             <td style="color:green;">{{$invoice->paid_amount}}</td>
                                             <td style="color:green;">{{$invoice->remaining_amount}}</td>
                                             <td style="color:green;">{{$invoice->paying_status}}</td>
-
                                             <td>
-
+                                            <span class="badge {{ $invoice->is_online ? 'badge-green' : 'badge-red' }}">
+                                          {{ $invoice->is_online ? 'Online' : 'Offline' }}
+                                             </span>
+                 
+                                            </td>
+                                            <td>
+                                            @if($invoice->is_online)
                                             <a href="{{ route('invoices.cancel_request',  ['id'=>$invoice['id']]) }}" class="btn btn-primary btn-xs">Request Invoice Cancel</a>
                                             <a href="{{ route('invoices.pay_form',  ['id'=>$invoice['id']]) }}" class="btn btn-primary btn-xs ml-5">Pay For Invoice</a>
                                             <a href="#" class="btn btn-primary btn-xs ml-5">Edit</a>
-
+                                            @endif
 
                                             </td>
                                             <td>

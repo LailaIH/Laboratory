@@ -72,18 +72,7 @@
                 </div></div>
                 
              <div class="row gx-3 mb-3">
-                <div class="col-md-6">
-                    <label for="institu_id" class="small mb-1">Institute</label>
-                    <select name="institute_id" id="institu_id" class="form-control form-control-solid" aria-label="Default select example" required>
-                    <option value="">Select an Institute</option>
-                    @foreach ($institutes as $institute)
-                        <option value="{{ $institute->id }}">{{ $institute->name }}</option>
-                    @endforeach
-                </select>
-                @error('institu_id')
-                    {{$message}}
-                @enderror
-                </div>     
+                    
 
               
 
@@ -98,30 +87,32 @@
                 @error('test_id')
                     {{$message}}
                 @enderror
-                </div> </div>
+                </div> 
 
                 
 
-                <div class="row gx-3 mb-3">
-                <div class="col-md-4">
+                
+                <div class="col-md-6">
                     <label for="admission" class="small mb-1">Admission Date</label>
                     <input type="date" class="form-control" id="admission" name="admission" value="{{ old('admission') }}" required>
                     @error('test_id')
                     {{$message}}
                 @enderror
-                </div>   
+                </div>   </div>
+
+                <div class="row gx-3 mb-3">
                 
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label for="period" class="small mb-1">Pregenant Women Only! enter last period date</label>
                     <input placeholder="yy-mm-dd" type="date" class="form-control" id="period" name="period" value="{{ old('period') }}">
                 </div> 
 
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label for="today" class="small mb-1">Enter today's date</label>
                     <input placeholder="yy-mm-dd" type="date" class="form-control" id="today" name="today" value="{{ old('today') }}">
                 </div> </div>
 
-                <br>
+                
                 <div class="row gx-3 mb-3">
                 <div class="col-md-6">
                     <label for="notes" class="small mb-1">Patient's Notes</label>
@@ -148,13 +139,7 @@
                 
                 
                 <div class="row gx-3 mb-3">
-                <div class="col-md-6">
-                    <label for="paid_amount" class="small mb-1">Paid Amount</label>
-                    <input class="form-control" id="paid_amount" name="paid_amount" type="number"  value="{{ old('paid_amount') }}" required>
-                    @error('paid_amount')
-                    {{$message}}
-                @enderror
-                </div>   
+                 
                 
                                
 
@@ -167,19 +152,19 @@
                     @error('money_note')
                     {{$message}}
                 @enderror
-                </div> </div>
+                </div> 
 
-                <div class="row gx-3 mb-3">
-               <div class="col-md-8">
+                
+               <div class="col-md-6">
                     <label for="result_entry_due" class="small mb-1">Enter Result's entry due date</label>
                     <input placeholder="yy-mm-dd" type="date" class="form-control" id="result_entry_due" name="result_entry_due" value="{{ old('result_entry_due') }}">
-                </div> 
+                </div> </div>
            
                 
                 <div class="col-12 mt-3">
                     
                 <button type="submit" class="btn btn-primary btn-sm">Create Sample</button>
-                </div></div>
+                </div>
             </form>
 
 
