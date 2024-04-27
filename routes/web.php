@@ -86,6 +86,7 @@ Route::middleware('admin')->group(function () {
             Route::get('/results/search/patients/samples', [ResultController::class, 'searchPatientSamples'])->name('results.search_patients_samples');
             Route::post('/results/find/samples', [ResultController::class, 'findSamples'])->name('results.find_samples');
             Route::patch('/results/update-status/{result}', [ResultController::class, 'updateStatus'])->name('results.updateStatus');
+            Route::get('/samples/without/results', [ResultController::class, 'noResultsSamples'])->name('results.not_results_samples');   
 
             //admin approval
             Route::get('/results/not-approved/admin', [ResultController::class, 'notApprovedByAdminResults'])->name('results.not_approved_by_admin');   
@@ -128,6 +129,8 @@ Route::middleware('admin')->group(function () {
         Route::get('/invoices/cancel/{id}', [InvoiceController::class, 'cancel'])->name('invoices.cancel');
         Route::get('/invoices/reject/{id}', [InvoiceController::class, 'reject'])->name('invoices.reject');
         Route::get('/invoices/rejected/invoices', [InvoiceController::class, 'rejectedInvoices'])->name('invoices.rejected_invoices');
+        Route::get('/invoices/pay/form/{id}', [InvoiceController::class, 'invoicePayForm'])->name('invoices.pay_form');
+        Route::put('/invoices/pay/{id}', [InvoiceController::class, 'payForInvoice'])->name('invoices.pay_invoice');
 
 
 

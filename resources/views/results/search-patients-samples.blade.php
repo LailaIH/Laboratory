@@ -23,8 +23,8 @@
         <form action="{{ route('results.find_samples') }}" method="POST" class="row g-3">
                 @csrf
                 <div class="row gx-3 mb-3">
-                    <br>
-                <label for="search" class="form-label"> Enter The Patient Name To find Their Sample/s </label>
+                    
+                <label for="search" class="form-label mt-2"> Enter The Patient Name To find Their Sample/s </label>
 
                 <div class="col-md-6">
                 <input type="text" id="search" name="search" placeholder="Search" class="form-control" value="{{old('search')}}" required />
@@ -32,9 +32,14 @@
 
 
                 
-                <div class="col-md-6 mt-1">
-                <button type="submit" class="btn btn-primary btn-sm">Find Samples</button></div></div>
+                <div class="col-md-3 mt-1">
+                <button type="submit" class="btn btn-primary btn-sm">Find Samples</button></div>
+          
             </form>
+            <div class="col-md-3 mt-1">
+            <a href="{{route('results.not_results_samples')}}" class="btn btn-primary btn-sm">Or Find All Samples With No Results </a></div></div>
+
+
 
             @if(isset($samples) && $samples->isNotEmpty())
             @foreach($samples as $sample)

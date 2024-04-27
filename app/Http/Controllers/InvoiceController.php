@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
+    // status column --> status for canceling invoice request (waiting,rejected,approved)
+    // paying_status column --> the status of invoice paying ( paid , unpaid , pending )
+
+
     // invoices of patients
     public function index(){
         // get all the patients who have invoices
@@ -28,7 +32,7 @@ class InvoiceController extends Controller
 
         $total =0;
         foreach($invoices as $invoice){
-            $total+= $invoice->total_invoice;
+            $total+= $invoice->remaining_amount;
         }
 
 
@@ -64,13 +68,15 @@ class InvoiceController extends Controller
             $invoice->user_id = auth()->user()->id;
             $invoice->patient_id = strip_tags($request->input('patient_id'));
             $invoice->total_invoice = strip_tags($request->input('total_invoice'));
+            $invoice->remaining_amount = strip_tags($request->input('total_invoice'));
+            $invoice->paying_status='pending';
             $invoice->save();
 
             return redirect()->route('invoices.index')->with('success','invoice has been created successfully');
 
         }
 
-        // create invoice for a patien'ts specific sample
+        // create invoice for a patient's specific sample
         public function createInvoiceFromSamplesList($sampleId , $patientId){
 
             $sample = Sample::findOrFail($sampleId);
@@ -96,8 +102,9 @@ class InvoiceController extends Controller
             $invoice->user_id = auth()->user()->id;
             $invoice->sample_id = $sampleId;
             $invoice->patient_id = $patientId;
-               
+            $invoice->paying_status='pending';
             $invoice->total_invoice = $total;
+            $invoice->remaining_amount=$total;
            
             $invoice->save(); 
             return redirect()->route('invoices.index')->with('success','invoice has been created successfully');
@@ -167,7 +174,46 @@ class InvoiceController extends Controller
 
         }
 
+        // view invoice paying form 
 
+        public function invoicePayForm($id){
+
+            return view('invoices.pay-form',['invoice'=>Invoice::findOrFail($id)]);
+        }
+
+        // fully or partly pay an invoice / debit
+        public function payForInvoice(Request $request ,$id){
+
+            $request->validate([
+            
+                'new_invoice'=>'required',
+            ]);
+
+            $invoice = Invoice::findOrFail($id);
+            $patientId = $invoice->patient->id;
+            $oldInvoice = $invoice->total_invoice ;
+            $oldPaidAmount = $invoice->paid_amount;
+            $newInvoice = strip_tags($request->input('new_invoice'));
+
+            if($newInvoice <= $invoice->remaining_amount){
+            
+                $invoice->paid_amount = $newInvoice + $oldPaidAmount;
+                $invoice->remaining_amount = $oldInvoice - $invoice->paid_amount ;
+                $invoice->paying_status = $invoice->remaining_amount==0? 'fully paid':'partly paid';
+
+                $invoice->save();
+                return redirect()->route('invoices.show',$patientId)->with('success','successfully updated invoice value');
+
+            }
+
+            return redirect()->back()->with('warning','Amount you entered is greater than your original invoice');
+
+            
+
+
+
+
+        }
 
 }
 

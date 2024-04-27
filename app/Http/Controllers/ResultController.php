@@ -105,6 +105,12 @@ class ResultController extends Controller
         return redirect()->route('results.index');
     }
 
+    // find samples that don't have results yet
+    public function noResultsSamples(){
+
+        return view('results.no-results-samples',['samples'=>Sample::doesntHave('result')->get()]);
+    }
+
 
     // Admin Approval Or Rejection Process 
 

@@ -39,6 +39,9 @@
                                         <th>Patient</th>
                                         <th>Invoice For Sample</th>
                                         <th>Invoice </th>
+                                        <th>Paid Amount</th>
+                                        <th>Remaining Amount</th>
+                                        <th>Paying Status</th>
                                         <th></th>
                                         
                                     
@@ -57,13 +60,27 @@
                                             @if($invoice->sample_id !=null)
                                             <td>{{$invoice->sample->test->name }}</td>
                                             @else
-                                            <td>No Sample Attached (invoice added by admin)</td>
+                                            <td>No Sample Attached(Debit)</td>
                                             @endif
                                             <td style="color:green;">{{$invoice->total_invoice}}</td>
+                                            <td style="color:green;">{{$invoice->paid_amount}}</td>
+                                            <td style="color:green;">{{$invoice->remaining_amount}}</td>
+                                            <td style="color:green;">{{$invoice->paying_status}}</td>
+
                                             <td>
+
                                             <a href="{{ route('invoices.cancel_request',  ['id'=>$invoice['id']]) }}" class="btn btn-primary btn-xs">Request Invoice Cancel</a>
+                                            <a href="{{ route('invoices.pay_form',  ['id'=>$invoice['id']]) }}" class="btn btn-primary btn-xs ml-5">Pay For Invoice</a>
+                                            <a href="#" class="btn btn-primary btn-xs ml-5">Edit</a>
+
 
                                             </td>
+                                            <td>
+
+                                            </td>
+                                            
+
+                                            
 
                                         </tr>
                                         @endforeach

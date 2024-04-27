@@ -25,7 +25,7 @@
         <form action="{{ route('results.store' , ['id'=>$sample['id']]) }}" method="POST" class="row g-3">
                 @csrf
                 
-                <p>Create A New Result For {{$sample->patient->name}} Of the test {{$sample->test->name}}</p>
+                <p>Create A New Result For {{ucfirst($sample->patient->name) }} Of the Test {{ucfirst($sample->test->name)}}</p>
                 <div class="row gx-3 mb-3">
                 <div class="col-md-6">
                <label for="title" class="form-label"> Title </label>
