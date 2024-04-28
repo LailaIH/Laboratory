@@ -83,19 +83,21 @@ class User extends Authenticatable
         return $this->hasMany(Result::class);
     }
 
-    public function debits(){
-        return $this->hasMany(Debit::class);
-    }
+    
 
     public function invoices(){
         return $this->hasMany(Invoice::class);
     }
 
     public function test_thirdparties(){
-        return $this->hasMany(Test_Thirdparty::class());
+        return $this->hasMany(Test_Thirdparty::class);
     }
 
     public function thirdpartis(){
-        return $this->hasMany(Thirdparty::class());
+        return $this->hasMany(Thirdparty::class);
+    }
+
+    public function antibiotics(){
+        return $this->hasMany(Antibiotic::class);
     }
 }

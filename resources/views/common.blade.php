@@ -235,11 +235,11 @@
                     </a>
                     <div class="collapse" id="collapseDashboards2" data-bs-parent="#accordionSidenav">
                         <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                            <a class="nav-link" href="dashboard-1.html">
+                            <a class="nav-link" href="{{route('patients.create')}}">
                                 New Patient
                                 <span class="badge bg-primary-soft text-primary ms-auto"><i class="fa-solid fa-plus"></i></span>
                             </a>
-                            <a class="nav-link" href="dashboard-2.html">All Patients</a>
+                            <a class="nav-link" href="{{route('patients.index')}}">All Patients</a>
                             <a class="nav-link" href="{{route('patients.patients_with_samples')}}">Patients QuoteList</a>
 
 

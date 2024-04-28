@@ -21,4 +21,6 @@ class Test_Result extends Model
             return $this->belongsTo(Test::class);
         }
 
+      
+
 }

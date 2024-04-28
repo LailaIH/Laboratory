@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SampleController;
 use App\Http\Controllers\ResultController;
 use App\Http\Controllers\PatientController;
-use App\Http\Controllers\DebitController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\Test_ThirdpartyController;
@@ -107,16 +106,15 @@ Route::middleware('admin')->group(function () {
 
 
         //Patients
+        Route::get('/patients', [PatientController::class, 'index'])->name('patients.index');
+        Route::get('/patients/create', [PatientController::class, 'create'])->name('patients.create');
+        Route::post('/patients/store', [PatientController::class, 'store'])->name('patients.store');
+        Route::patch('/patients/update-status/{patient}', [PatientController::class, 'updateStatus'])->name('patients.updateStatus');
+
         Route::get('/patients/with-samples', [PatientController::class, 'patientsWithPriceQuotation'])->name('patients.patients_with_samples');
         Route::get('/patients/price-quotation/{id}', [PatientController::class, 'priceQuotation'])->name('patients.price_quotation');
 
-        //debits
-        Route::get('/debits', [DebitController::class, 'index'])->name('debits.index');
-        Route::get('/debits/create', [DebitController::class, 'create'])->name('debits.create');
-        Route::post('/debits/store', [DebitController::class, 'store'])->name('debits.store');
-        Route::get('/debits/pay/form/{id}', [DebitController::class, 'debitsPayForm'])->name('debits.pay_form');
-        Route::post('/debits/pay/debit/{id}', [DebitController::class, 'payDebit'])->name('debits.pay_debit');
-
+        
         // Invoices
         Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
         Route::get('/invoices/show/{id}', [InvoiceController::class, 'show'])->name('invoices.show');

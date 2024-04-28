@@ -19648,3 +19648,12 @@ pre[class*=language-] {
   margin: 0;
   cursor: pointer;
 }
+
+.sample-status {
+  display: inline-flex;
+  align-items: center; /* Align items vertically */
+}
+
+.sample-status .badge {
+  margin-right: 5px; /* Add margin to the right of the badge */
+}

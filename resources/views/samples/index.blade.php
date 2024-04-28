@@ -33,14 +33,14 @@
                             
                            <div >
                             <div class="card-body">
-                                <table  class="table small-table-text">
+                                <table id="myTable" class="table small-table-text">
                                     <thead>
                                     <tr style="white-space: nowrap; font-size: 11.5px;" >
 
                                         <th>Sample</th>
                                         <th>Test</th>
                                         <th>Is Online?</th>
-                                        <th></th>
+                                        
                                         <th>Extra Discount For This Sample</th>
                                         <th>Test's Original Discount</th>
                                         <th>Actions</th>
@@ -59,20 +59,21 @@
                                             
 
                                             <td>
+                                               
+                                            <div class="sample-status">    
                                             <span class="badge {{ $sample->is_online ? 'badge-green' : 'badge-red' }}">
                                           {{ $sample->is_online ? 'Online' : 'Offline' }}
                                              </span>
-                 
-                                            </td>
-                                            <td>
-                                            <form method="POST" action="{{ route('samples.updateStatus', $sample) }}">
+                                             
+                                             <form method="POST" action="{{ route('samples.updateStatus', $sample) }}">
                                                     @csrf
                                                     @method('PATCH')
-
-                                                    <button type="submit" class="btn btn-danger btn-xs">Change</button>
-
-                                                </form> 
+                                                    <span>
+                                                    <button style="border: none;" type="submit" class="badge badge-red  ">Change</button>
+                                                    </span>
+                                                </form> </div>
                                             </td>
+                                            
                                             <td style="color: green;"><b>{{$sample->campaign->name}}</b></td>
                                             <td style="color: green;"><b>{{$sample->test->campaign->name}}</b></td>
                                             
